@@ -19,39 +19,41 @@ mysql> SELECT * FROM information_schema.`TABLES` WHERE TABLE_SCHEMA = 'z0211' AN
 
 ```
 #### 详细说明
-Table_type 表类型：[system view|base table]
-Version	版本：默认值10
-Row_format 行格式：[Compact|Dynamic|Fixed]
-	不存在varchar text bolb可变长度字段的表为静态表，row_format是fixed,
-		优点：读取速度快 缺点：浪费额外空间
-	存在varchar text bolb可变长度字段的表为动态表，row_format为dynamic
-		有点：节省空间，缺点：读取慢
-	还有其他值：DEFAULT COMPACT(紧凑)
-	修改行格式
-		ALTER TABLE table_name ROW_FORMAT = DEFAULT
-		修改 fixed --> dynamic 结果char 变成varchar
-		修改 dynamic --> fixed 结果varchar 变成char
+* Table_type 表类型：[system view|base table]
+* Version	版本：默认值10
+* Row_format 行格式：[Compact|Dynamic|Fixed]
+  * 不存在varchar text bolb可变长度字段的表为静态表，row_format是fixed,
+     * 优点：读取速度快 缺点：浪费额外空间
+  * 存在varchar text bolb可变长度字段的表为动态表，row_format为dynamic
+     * 有点：节省空间，缺点：读取慢
+  * 还有其他值：DEFAULT COMPACT(紧凑)
+  * 修改行格式
+     * ALTER TABLE table_name ROW_FORMAT = DEFAULT
+     * 修改 fixed --> dynamic 结果char 变成varchar
+     * 修改 dynamic --> fixed 结果varchar 变成char
 Auto_increment：做自增主键的自动增量当前值
 
-data_free
-	每当MySQL从你的列表中删除了一行内容，该段空间就会被留空。而在一段时间内的大量删除操作，会使这种留空的空间变得比存储列表内容所使用的空间更大。
-	当MySQL对数据进行扫描时，它扫描的对象实际是列表的容量需求上限，也就是数据被写入的区域中处于峰值位置的部分。如果进行新的插入操作，MySQL将尝试利用这些留空的区域，但仍然无法将其彻底占用。
-	1. 查询数据库空间碎片
+* data_free
+  * 每当MySQL从你的列表中删除了一行内容，该段空间就会被留空。而在一段时间内的大量删除操作，会使这种留空的空间变得比存储列表内容所使用的空间更大。
+  * 当MySQL对数据进行扫描时，它扫描的对象实际是列表的容量需求上限，也就是数据被写入的区域中处于峰值位置的部分。如果进行新的插入操作，MySQL将尝试利用这些留空的区域，但仍然无法将其彻底占用。
+  * 查询数据库空间碎片
+    ```
 	mysql> SELECT table_name,data_free,engine FROM information_schema.`TABLES` WHERE TABLE_SCHEMA = 'zzz' AND TABLE_NAME = 'xt_log';
 	+------------+-----------+--------+
 	| table_name | data_free | engine |
 	+------------+-----------+--------+
 	| xt_log     |   4194304 | InnoDB |
 	+------------+-----------+--------+
-	2.对数据表优化：
+    ```
+  * 对数据表优化：
 	optimeze table `table_name`;
 
 #### 磁盘空间碎片回收
 
-	碎片空间回收利含三层含义：
-		数据库中已有的数据被删除（delete）后，对于这些数据原有的碎片空间，查询（select）数据时是否会被扫描
-		再次添加（insert）数据时，碎片空间是否会被重复利用
-		如何物理地回收这些碎片空间，以减小存储压力，回收碎片对系统有何影响
+* 碎片空间回收利含三层含义：
+  * 数据库中已有的数据被删除（delete）后，对于这些数据原有的碎片空间，查询（select）数据时是否会被扫描
+  * 再次添加（insert）数据时，碎片空间是否会被重复利用
+  * 如何物理地回收这些碎片空间，以减小存储压力，回收碎片对系统有何影响
 
 
 
