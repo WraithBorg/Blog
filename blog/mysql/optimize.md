@@ -49,3 +49,42 @@ create index index_first_last on employees(first_name,last_name); -- 创建多�
 
 >* 禁用外键检查
 >* 禁止自动提交
+
+### 分析表
+ANALYZE [LOCAL | NO_WRITE_TO_BINLOG]TABLE titles;
+```
+mysql> ANALYZE NO_WIRITE_TO_BINLOG TABLE titles,salaries;
++--------------------+---------+----------+----------+
+| Table              | Op      | Msg_type | Msg_text |
++--------------------+---------+----------+----------+
+| employees.titles   | analyze | status   | OK       |
+| employees.salaries | analyze | status   | OK       |
++--------------------+---------+----------+----------+
+2 rows in set (0.22 sec)
+```
+Op: 执行操作
+Msg_type: 信息类型(status(状态),info(信息),note(注意),warning,error)
+Msg_text: 显示信息
+
+### 检查表
+```
+mysql> CHECK TABLE titles,salaries;
++--------------------+-------+----------+----------+
+| Table              | Op    | Msg_type | Msg_text |
++--------------------+-------+----------+----------+
+| employees.titles   | check | status   | OK       |
+| employees.salaries | check | status   | OK       |
++--------------------+-------+----------+----------+
+2 rows in set (4.95 sec)
+```
+### 优化表
+使用OPTIMIZE TABLE语句优化表，但只能优化VARCHAR BOLB TEXT 类型字段
+OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE table01,table02;
+```
+notice: InnoDB 表可能会执行报错
+解决：
+ALTER TABLE table.name ENGINE='InnoDB';  -- 转移表数据，去掉碎片直接优化，不过会影响业务
+或者
+在启动的时候指定--skip-new或者--safe-mode选项来支持optimize功能
+然后在执行OPTIMEZE
+```

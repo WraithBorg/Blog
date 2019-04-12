@@ -15,6 +15,9 @@ desc tableabc; -- 查看表结构
 show create DATABASE test;
 SELECT VERSION();
 H:\test_db-master>mysql -t -u root -p < employees.sql --安装数据库
+SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES'; -- 查询mysql安全模式
+SET sql_safe_updates = 1; -- 开启安全模式，update不使用where会报错
+
 ```
 ```
 desc tableabc; -- 查看表结构
@@ -92,3 +95,9 @@ trx_query: 事务中的sql
 数据库当前thread最近一次执行的sql
 SELECT * FROM performance_schema.events_statements_current
 ```
+### mysql 表空间
+查询是否启用独立表空间
+show variables like 'innodb_file_per%'\G;
+
+### 关键字
+NO_WRITE_TO_BINLOG -- 执行过程不写入二进制
