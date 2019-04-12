@@ -13,6 +13,6 @@
   - [basic](blog/mysql/basic.md)
   - [ddl](blog/mysql/ddl.md)
   - [install](blog/mysql/install.md)
-  - [tips](blog/mysql/optimize.md)
-  - [optimize](blog/mysql/tips.md)
+  - [tips](blog/mysql/tips.md)
+  - [optimize](blog/mysql/optimize.md)
   - [virtual columns](blog/mysql/virtual%20columns.md)
