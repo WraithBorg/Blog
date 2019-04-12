@@ -1,6 +1,6 @@
 ## Blog
 * CENTOS7
-  * - [command](blog/centos7/command.md)
+  - [command](blog/centos7/command.md)
   * frp
 * GIT
   * command
