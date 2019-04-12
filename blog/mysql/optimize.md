@@ -44,8 +44,8 @@ create index index_first_last on employees(first_name,last_name); -- 创建多�
 	
 ### InnoDB引擎的表 常见优化
 >* 禁用唯一性检查	
->插入数据之前 执行 set unique_checks= 0;
-禁止对唯一索引的检查，数据导入完成之后在运行 set unique_checks= 1;对唯一索引的检查，数据导入完成之后在运行 set unique_checks= 1;
+`插入数据之前 执行 set unique_checks= 0;
+禁止对唯一索引的检查，数据导入完成之后在运行 set unique_checks= 1;对唯一索引的检查，数据导入完成之后在运行 set unique_checks= 1;`
 
 >* 禁用外键检查
 >* 禁止自动提交
