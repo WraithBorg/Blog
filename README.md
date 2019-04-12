@@ -12,6 +12,7 @@
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
   - [ddl](blog/mysql/ddl.md)
+  - [information_schema](blog/mysql/information_schema.md)
   - [install](blog/mysql/install.md)
   - [tips](blog/mysql/tips.md)
   - [optimize](blog/mysql/optimize.md)
