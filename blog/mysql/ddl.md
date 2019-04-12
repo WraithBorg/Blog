@@ -71,6 +71,8 @@ mysql >    source /test_db-master/employees.sql -- centos7 执行sql文件
 #### 接着我们来查看下死锁和事务的相关指标：
 ```
 show engine innodb status;中没有任何死锁的信息
+    LATEST FOREIGN KEY ERROR  最近一次外键错误
+    LATEST DETECTED DEADLOCK  最近一次死锁
 information_schema.innodb_trx 、information_schema.innodb_locks 、 
 information_schema.innodb_lock_waits 的也没有任何形式的锁信息。
 ```

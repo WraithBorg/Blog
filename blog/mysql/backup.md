@@ -52,3 +52,5 @@ public class Test {
     }
 }
 ```
+### 错误信息
+MySql 数据库导入"Unknown command '\n'." -- 编码不对   Mysql -u root -p --default-character-set=utf8 database <backpath
