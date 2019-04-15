@@ -4,11 +4,11 @@
   - [frp](blog/centos7/frp.md)
 * GIT
   - [command](blog/git/command.md)
-* JAVA
+* [JAVA](https://github.com/WraithBorg/Blog/projects/1)
   - [synchronized](blog/java/generate%20bill%20code.md)
   - [generate bill code](blog/java/generate%20random%20code.md)
   - [generate random code](blog/java/synchronized.md)
-* [MYSQL](Blog/projects/2)
+* [MYSQL](https://github.com/WraithBorg/Blog/projects/2)
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
   - [ddl](blog/mysql/ddl.md)
