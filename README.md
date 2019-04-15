@@ -8,7 +8,7 @@
   - [synchronized](blog/java/generate%20bill%20code.md)
   - [generate bill code](blog/java/generate%20random%20code.md)
   - [generate random code](blog/java/synchronized.md)
-* MYSQL
+* [MYSQL](Blog/projects/2)
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
   - [ddl](blog/mysql/ddl.md)
