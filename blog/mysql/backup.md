@@ -60,7 +60,7 @@ MySql 数据库导入"Unknown command '\n'." -- 编码不对   Mysql -u root -p 
     1. 代码实时转，select + insert + delete，一条一条的数据转过去，这边再删，存在两个问题：
         1. 开发得额外开发转储的代码
         2. 开发不好控制事务大小，事务太大容易导致生产主从延迟和性能的波动    事务太小，容易增加生产高事务的峰值
-    2.分区表定时转储方式，使用分区表置换的方式，无限类似于直接copy底层的ibd文件的方式，
+    2. 分区表定时转储方式，使用分区表置换的方式，无限类似于直接copy底层的ibd文件的方式，
         需要前期设计好分区表，用是range time的方式，每个月的数据一个分区，一个月转一次
         其他的方式，都可以不考虑
         现在生产环境，一年至少转50T数据，都是用第二种方案，非常6
@@ -68,6 +68,21 @@ MySql 数据库导入"Unknown command '\n'." -- 编码不对   Mysql -u root -p 
         如果真的存在那种业务状态未完成但又一起转储到历史库去了的数据
         就需要开发自己捞回 但是几亿行说不定都没有一行，概率非常小
         dump的方式，太落后也太慢了，而且很容易造成大事务
+
+        分区表exchange的方式转成单表后，就可以找个时间做表空间传输
+        原库上在低峰期做drop table即可
+        如果你们有自动化的话，可以将这种任务设置为上面你说的按钮的方式，想什么时候搞就什么时候搞，
+        降低误操作的几率，也降低这种任务带来的对性能的冲击性，，，
+
+#### 表空间传输例子 ,bd 文件恢复
+----例：需要恢复的表名为xxx,在oms库下，从备份文件中物理拷贝过来 xxx.ibd文件
+```
+mysql> create table xxx;
+mysql> alter table xxx discard tablespace;
+shell> cp /backup/xxx.ibd /opt/mysql3306/data/oms/xxx.ibd
+shell> chown mysql.mysql xxx.ibd&&chmod644 xxx.ibd
+mysql> alter table xxx import tablespace;  ----时间长短受ibd文件大小限制
+```
 
 
 
