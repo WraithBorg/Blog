@@ -13,6 +13,7 @@
   - [basic](blog/mysql/basic.md)
   - [ddl](blog/mysql/ddl.md)
   - [information_schema](blog/mysql/information_schema.md)
+  - [innodb graphic](blog/mysql/innodb%20graphic.md)
   - [install](blog/mysql/install.md)
   - [optimize](blog/mysql/optimize.md)
   - [proxy](blog/mysql/proxy.md)
