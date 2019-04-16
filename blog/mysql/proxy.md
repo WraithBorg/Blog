@@ -1,4 +1,7 @@
 ### 读写分离 主从复制
-mysql shell + mysql router  + msyql  mg
-proxy SQL + mysql
-ha+mycat
+方案
+```
+1: mysql shell + mysql router  + msyql  mg
+2: proxy SQL + mysql
+3: ha+mycat
+```
