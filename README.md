@@ -2,6 +2,7 @@
 * CENTOS7
   - [command](blog/centos7/command.md)
   - [frp](blog/centos7/frp.md)
+  - [ssr](blog/centos7/ssr.md)
 * GIT
   - [command](blog/git/command.md)
 * JAVA
