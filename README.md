@@ -2,7 +2,9 @@
 * CENTOS7
   - [command](blog/centos7/command.md)
   - [frp](blog/centos7/frp.md)
+  - [nginx](blog/centos7/nginx.md)
   - [ssr](blog/centos7/ssr.md)
+  - [vim](blog/centos7/vim.md)
 * GIT
   - [command](blog/git/command.md)
 * JAVA
@@ -22,6 +24,7 @@
   - [optimize](blog/mysql/optimize.md)
   - [performance_schema](blog/mysql/performance_schema.md)
   - [proxy](blog/mysql/proxy.md)
+  - [rename database](blog/mysql/rename%20database.md)
   - [show engine innodb status](blog/mysql/show%20engine%20innodb%20status.md)
   - [table partitioning](blog/mysql/table%20partitioning.md)
   - [tips](blog/mysql/tips.md)

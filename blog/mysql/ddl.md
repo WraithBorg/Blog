@@ -17,7 +17,7 @@ SELECT VERSION();
 H:\test_db-master>mysql -t -u root -p < employees.sql --安装数据库
 SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES'; -- 查询mysql安全模式
 SET sql_safe_updates = 1; -- 开启安全模式，update不使用where会报错
-
+select version();  -- 查看mysql版本
 ```
 ```
 desc tableabc; -- 查看表结构

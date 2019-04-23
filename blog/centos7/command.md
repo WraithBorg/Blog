@@ -1,42 +1,39 @@
 # Centos7命令
 
-### 安装vim
-
+### BASIC
 ```
-rpm -qa|grep vim  ｛查询是否安装｝
-yum -y install vim-enhanced ｛安装缺少的包｝
 ls *.rpm; ｛显示所有rpm文件｝
 pwd; {显示当前工作目录}
 cd..; {切换上级目录}
 whereis mysql; ｛查找相关文件｝
+rm -rf 文件夹  {递归删除文件夹}
+```
+
+### 安装vim
+```
+rpm -qa|grep vim  ｛查询是否安装｝
+yum -y install vim-enhanced ｛安装缺少的包｝
 ```
 
 ### 开放端口
-关闭与开启防火墙
 ```
+//  关闭与开启防火墙
 systemctl stop firewalld.service
 systemctl start firewalld.service
-```
-查看防火墙是否开启的状态，以及开放端口的情况
-```
+//  查看防火墙是否开启的状态，以及开放端口的情况
 systemctl status firewalld.service
 sudo firewall-cmd --list-all
-```
-接下来通过以下命令开放http 80 端口：
-```
+//  接下来通过以下命令开放http 80 端口：
 sudo firewall-cmd --add-service=http --permanent
 sudo firewall-cmd --add-port=80/tcp --permanent
-```
-命令末尾的--permanent表示用久有效，不加这句的话重启后刚才开放的端口就又失效了。
-然后重启防火墙：
-```
+//  命令末尾的--permanent表示用久有效，不加这句的话重启后刚才开放的端口就又失效了。
+//  然后重启防火墙：
 sudo firewall-cmd --reload
-```
-再次查看端口的开放情况：
-```
+//  再次查看端口的开放情况：
 sudo firewall-cmd --list-all
 ```
-## BASIC
+
+### BASIC
 ```
 切换为超级用户
 su -
@@ -47,7 +44,7 @@ yum install man-pages
 TAB 补全
 查看当前所处目录 pwd 
 ```
-#### chmod命令 权限详解
+### chmod命令 权限详解
 ```
 chomd644 xxx.ibd
 // 从左至右，1-3位字符代表文件所有者的权限，4-6位字符代表同组用户的权限，7-9字符代表其他用户的权限。
@@ -62,7 +59,7 @@ chomd644 xxx.ibd
 777 rwxrwxrwx
 ```
 
-#### chown命令
+### chown命令
 ```
 [root@localhost ~]# chown -R  mysql:mysql ./
 1: 命令格式：　chown [选项]... [所有者][:[组]] 文件...
@@ -73,14 +70,20 @@ chomd644 xxx.ibd
 【例 1】修改文件的所有者。
 之所以需要修改文件的所有者，是因为赋予权限的需要。当普通用户需要对某个文件拥有最高权限的时候，是不能把其他人的权限修改为最高权限的，也就是不能出现 777 的权限，这是非常不安全的做法。
 合理的做法是修改文件的所有者，这样既能让普通用户拥有最高权限，又不影响其他普通用户
-
-
-
-
-
-
 ```
 
+### 端口占用解决办法
+```
+// 检查端口被哪个进程占用
+[root@vultr local]# netstat -lnp|grep 80
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      23685/nginx: master
+// 查看进程的详细信息
+[root@vultr local]# ps 23685
+  PID TTY      STAT   TIME COMMAND
+23685 ?        Ss     0:00 nginx: master process ./nginx
+// 杀掉进程
+[root@vultr local]# kill -9 23685
+```
 
 
 
