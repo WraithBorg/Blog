@@ -85,7 +85,42 @@ shell> cp /backup/xxx.ibd /opt/mysql3306/data/oms/xxx.ibd
 shell> chown mysql.mysql xxx.ibd&&chmod644 xxx.ibd
 mysql> alter table xxx import tablespace;  ----时间长短受ibd文件大小限制
 ```
+#### 表空间传输实例
+```
+-- 模拟数据
+oldDB; -- 源库
+employees --源表(mysql官方测试表 约30w条数据)
 
+newDB; -- 目标库
+目标库创建 相同结构的employees表
+
+mysql> alter table employees discard tablespace; -- 删除目标库表空间
+mysql> flush tables oldDB.employees for export;  -- 在/var/lib/mysql/oldDB/ 目录下生成cfg文件
+
+将 .ibd 文件和 .cfg metadata 文件从oldDB拷贝到newDB上:
+[root@vultr employees]# cp employees.{cfg,ibd} ../newDB/   （本机的话，另开窗口，防止丢失cfg文件）
+远程主机为：scp employees.{cfg,ibd} 新主机地址:/var/lib/mysql/newDB
+
+源库上，使用UNLOCAL TABLES释放FLUSH TABLES ... FOR EXPORT命令获取的锁
+mysql> UNLOCK TABLES;
+
+目标库上，导入从源库上复制过来的表空间：
+mysql> alter table employees import tablespace;
+
+报错
+ERROR 1812 (HY000): Tablespace is missing for table `oldDB`.`employees`.
+原因 文件权限
+对应文件的owner和group为root，实际上应该均为mysql，修改之后，导入正常
+查看文件权限
+[root@vultr oldDB]# ll employees.*
+-rw-r----- 1 root  root       670 Apr 24 06:14 employees.cfg
+-rw-r----- 1 mysql mysql     8768 Apr 24 06:04 employees.frm
+-rw-r----- 1 root  root  30408704 Apr 24 06:14 employees.ibd
+解决 赋予mysql文件权限
+[root@vultr oldDB]# chown mysql:mysql employees.*
+
+再次执行 mysql> alter table employees import tablespace; 成功
+```
 
 
 

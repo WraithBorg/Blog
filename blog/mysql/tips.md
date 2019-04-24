@@ -14,3 +14,12 @@ TINYINT 8bit 无符号数最大值 2^8 - 1  ，有符号数最大值2^7 - 1;
 	SELECT null <> null; -- 返回null 
 distinct 作用于所有列
 ```
+
+#### mysql删除数据库提示Error dropping database (can't rmdi
+```
+1.执行ps aux | grep mysql，查看mysql的data目录，比如结果是--datadir=/var/lib/mysql。
+2.进入data目录，删除以该数据库为名字的文件夹。
+cd /var/lib/mysql
+rm xxx -Rfv
+3.重新进入mysql，执行drop xxx。
+```

@@ -6,7 +6,7 @@
 // 查看redis进程    ps -ef | grep redis;
 // 设置开机启动   chkconfig redis on;
 // 进入本机redis服务  redis-cli
-
+// 关闭redis   redis-cli -p 端口号 shutdown
 
 ```
 

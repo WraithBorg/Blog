@@ -56,6 +56,11 @@ ALTER TABLE test DROP num2; -- 删除列
 ALTER TABLE test MODIFY num1 int(11) AFTER id; -- 修改列的排列顺序
 ALTER TABLE test DROP FOREIGN KEY `fk_emp_deptId2`; -- 删除外键
 
+删除库下面所有表
+// 输出删除语句
+select concat('drop table',table_name,';') from information_schema.TABLES where table_schema = 'newDB';
+// shell实现批量删除
+mysql -uroot -pThanos oldDB -sNe "select concat('use newDB;drop table ',table_name,';') from information_schema.TABLES where table_schema = 'newDB'" | while read table;do mysql -uroot -pThanos -sNe "$table";done
 ```
 
 #### Explain
@@ -101,3 +106,11 @@ show variables like 'innodb_file_per%'\G;
 
 ### 关键字
 NO_WRITE_TO_BINLOG -- 执行过程不写入二进制
+
+### set sql
+```
+SET FOREIGN_KEY_CHECKS = 0;     -- 禁用外键约束,作用域当前session,session重新建立连接会恢复默认值
+SET FOREIGN_KEY_CHECKS = 1;     -- 启用外键约束,作用域当前session
+SET GLOBAL FOREIGN_KEY_CHECKS = 0; 或 SET @@GLOBAL.FOREIGN_KEY_CHECKS = 0;  -- 禁用外键约束
+SELECT @@FOREIGN_KEY_CHECKS;    -- 查看外键约束
+```

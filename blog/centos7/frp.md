@@ -7,24 +7,13 @@ frp是一个可用于内网穿透的高性能的反向代理应用，支持tcp,u
 ##### 需要准备
 公网域名，公网服务器  此处演示用Centos7 64位系统
 ## 服务端 Centos7.0 64
-##### 安装 frps
 ```
-[root@vultr ~]# wget --no-check-certificate https://raw.githubusercontent.com/clangcn/onekey-install-shell/master/frps/install-frps.sh -O ./install-frps.sh
-```
-##### 获取文件修改权限？我不懂linux 这些命令都是超的
-```
-[root@vultr ~]# chmod 700 ./install-frps.sh
-```
-##### 安装frp
-```
-[root@vultr ~]# ./install-frps.sh install
-```
-##### 启动frp服务
-```
-[root@vultr ~]# frps start
-```
-##### 开放相应端口号
-```
+[安装 frps]# wget --no-check-certificate https://raw.githubusercontent.com/clangcn/onekey-install-shell/master/frps/install-frps.sh -O ./install-frps.sh
+[获取文件修改权限]# chmod 700 ./install-frps.sh
+[安装frp]# ./install-frps.sh install
+[启动frp服务]# frps start
+
+开放相应端口号
 [root@vultr ~]# systemctl status firewalld.service
 [root@vultr ~]# sudo firewall-cmd --list-all
 [root@vultr ~]# sudo firewall-cmd --add-service=http --permanent
@@ -32,10 +21,14 @@ frp是一个可用于内网穿透的高性能的反向代理应用，支持tcp,u
 [root@vultr ~]# sudo firewall-cmd --add-port=5443/tcp --permanent
 [root@vultr ~]# sudo firewall-cmd --add-port=6443/tcp --permanent
 [root@vultr ~]# sudo firewall-cmd --reload
-```
-##### 查询frp版本 并下载对应windows客户端
-```
-[root@vultr ~]# frps --version
+[查询frp版本 方便下载对应windows客户端]# frps --version
+
+其他命令
+停止服务：frps stop       重启服务：frps restart      运行状态：frps status
+参数：    frps config       版本：frps version
+卸载：   ./install-frps.sh uninstall
+更新：   ./install-frps.sh update
+安装：   ./install-frps.sh install
 ```
 此处演示用 v0.20.0版本
 https://github.com/fatedier/frp/releases
@@ -90,4 +83,9 @@ http://a.thelonegunmen.club
 在右侧窗口中选中“网络访问：本地帐户的共享和安全模型”设置项。
 右键点击上面的设置项，然后在弹出菜单中选择“属性”菜单项
 在打开的编辑窗口中选择“经典：对本地用户进行身份验证，不改变其本来身份”菜单项，最后点击确定按钮。再次连接远程桌面，就不再弹出无法连接的提示了。
+```
+
+#### tips
+```
+如果启动失败，大都是端口占用
 ```

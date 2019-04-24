@@ -85,5 +85,74 @@ tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      
 [root@vultr local]# kill -9 23685
 ```
 
+#### find 文件查找
+```
+find    可以找到你想要的文件
+格式：  find [目录] [选项] [选项值]
+选项：怎么找
+    -name   按照名字找
+        可以使用通配符
+    -size   按照大小找
+        单位为  kmg   10k（等于10k）   +10k（大于10k）   -10k（小于10k）
+    -user   按照用户名
+    -group  按照组名
+    -maxdepth  -mindepth   限制查找的目录层级，默认递归查找所有
+    -ctime  按照创建时间查找
+        单位是天
+选项值：找什么
+    find / -name demo.txt
+    find / -name \*.txt
+    find / -size +10k
+    find / -user demo.txt
+    find / -group demo.txt
+    find / -mindepth 4 -name \*.txt
+    find / -mindepth 3 -maxdepth 5 -name \*.txt
+e.g.
+find *.cfg
+```
 
+#### 文件内容搜索
+```
+grep   查找的内容   文件路径
+
+选项
+    --color=auto   将颜色高亮显示
+        给 grep 指令起一个别名   vi ~/.bashrc
+        添加一行     alias grep='grep --color=auto'
+        让配置文件立即生效       source ~/.bashrc
+    -c         得到内容的个数
+    -i         不区分大小写的查找
+    -n         显示在文档中的行号
+    -r         递归查找，但是不能限制后缀，只能遍历所有
+        grep -r that ~/*
+    -l         只显示文件名，不显示内容
+
+e.g.
+grep movie demo.txt
+grep that ~/*.txt
+grep -l 你好 ~/test/*.txt
+```
+
+### path
+```
+~代表用户的/home/用户明目录
+假设用户名是x，那么~/就是/home/x/
+
+.是代表此目录本身，但是一般可以不写
+cd ~/. 和cd ~ 和cd ~/效果一样
+
+如果.后面有东西又是另外一种情况，点在文件名头部，代表一个隐藏文件
+~/.local是你的主目录下一个.local的文件夹的路径，
+并且从.可以看出，这是一个饮藏文件，
+如果不用ls -a的话，一般ls是无法看到的
+
+/ 是根节点， ~ 是 home
+如果以root账号登陆
+~ 是 /root/
+/ 是 /
+
+如果以 name 登陆
+~ 是 /home/name/
+/ 是 /
+```
 
