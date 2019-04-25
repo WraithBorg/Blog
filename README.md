@@ -32,5 +32,6 @@
   - [table partitioning](blog/mysql/table%20partitioning.md)
   - [tips](blog/mysql/tips.md)
   - [virtual columns](blog/mysql/virtual%20columns.md)
+  - [xjd](blog/mysql/xjd.md)
 * WINDOWS
   - [cmd](blog/windows/cmd.md)
