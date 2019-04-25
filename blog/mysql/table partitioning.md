@@ -209,8 +209,22 @@ select * from table where pk = @pk; 查询速度会更快
 如果这张表只有主键索引，没有其他索引，还有类似sql语句，select * from table where key =@key;
 这是，对于key的查询需要扫描十个分区，即便每个分区查询开销为两次IO,则一共需要20次IO,而原来的单表设计，对于key的查询只需要2到3次IO
 ```
+#### 根据id进行HASH分区
+```
+CREATE TABLE `Profile` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`nickname` varchar(20) NOT NULL DEFAULT '',
+	`password` varchar(32) NOT NULL DEFAULT '',
+	`sex` char(1) NOT NULL DEFAULT '',
+	`rdate` date NOT NULL DEFAULT '2000-01-01',
+	PRIMARY KEY (`id`),
+	KEY `nickname` (`nickname`)
+) ENGINE = InnoDB
+PARTITION BY HASH (id) PARTITIONS 10;
+注：
+根据自增主键进行的hash分区并不会保证分区数据均匀，因为插入的自增id并非是连续的，因为该主键值因为某种原因被回滚了，则该值不会再次被使用。(或许根据不同版本mysql情况不同，需要测试）
 
-
+```
 
 
 

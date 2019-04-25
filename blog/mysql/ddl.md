@@ -119,5 +119,6 @@ SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES'; -- 查询mysql安全模式
 #### Other SQL
 ```
 H:\test_db-master>mysql -t -u root -p < employees.sql --安装数据库
+mysql> status;      -- 显示数据库状态
 ```
 
