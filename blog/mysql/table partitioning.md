@@ -174,6 +174,7 @@ partition p2018 values less than (2018)
 #### Command
 ```
 alter table t drop partition p0; --删除表分区
+alter table t  partition by hash(id) partitions 10; -- 添加表分区
 ```
 
 #### tips

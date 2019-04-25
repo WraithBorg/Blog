@@ -55,7 +55,7 @@ public class Test {
 ### 错误信息
 MySql 数据库导入"Unknown command '\n'." -- 编码不对   Mysql -u root -p --default-character-set=utf8 database <backpath
 
-### 转储
+### 大数据转储
 两种方案：
 ```
     1. 代码实时转，select + insert + delete，一条一条的数据转过去，这边再删，存在两个问题：
