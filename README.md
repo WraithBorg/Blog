@@ -2,7 +2,9 @@
 * CENTOS7
   - [command](blog/centos7/command.md)
   - [frp](blog/centos7/frp.md)
+  - [iostat](blog/centos7/iostat.md)
   - [nginx](blog/centos7/nginx.md)
+  - [redis](blog/centos7/redis.md)
   - [ssr](blog/centos7/ssr.md)
   - [vim](blog/centos7/vim.md)
 * GIT
@@ -14,6 +16,7 @@
 * MYSQL
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
+  - [data masking](blog/mysql/data%20masking.md)
   - [ddl](blog/mysql/ddl.md)
   - [engine](blog/mysql/engine.md)
   - [index](blog/mysql/index.md)
