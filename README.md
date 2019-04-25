@@ -4,6 +4,7 @@
   - [frp](blog/centos7/frp.md)
   - [iostat](blog/centos7/iostat.md)
   - [nginx](blog/centos7/nginx.md)
+  - [performance](blog/centos7/performance.md)
   - [redis](blog/centos7/redis.md)
   - [ssr](blog/centos7/ssr.md)
   - [vim](blog/centos7/vim.md)

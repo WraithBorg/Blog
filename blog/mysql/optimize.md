@@ -70,3 +70,18 @@ SHOW STATUS
 e.g.
 SHOW STATUS LIKE 'Slow_queries'
 ```
+
+#### 性能瓶颈
+CPU瓶颈
+IOP瓶颈
+网络瓶颈
+用mpstat,iostat,sar,vmstat 查看系统性能状态
+
+
+
+
+
+
+
+
+
