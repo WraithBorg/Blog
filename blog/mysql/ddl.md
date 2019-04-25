@@ -1,26 +1,7 @@
 ### DDL
+
 ```
-show create table tb_emp5; -- 显示表创建语句 show create table tb_emp5\G;
-show processlist; -- 显示系统中正在运行的所有进程
-show table status; -- 显示当前使用或者指定的database中的每个表的信息。信息包括表类型和表的最新更
-show tables或show tables from database_name; -- 显示当前数据库中所有表的名称。 
-show databases; -- 显示mysql中所有数据库的名称
-select database(); -- 显示正在使用的数据库
-show columns from table_name from database_name; 或show columns from database_name.table_name; -- 显示表中列名称
-show index from table_name; -- 显示表的索引。 
-show variables like '%storage_engine%'; -- 显示默认 存储引擎
-show warnings; -- 显示最后一个执行的语句所产生的错误、警告和通知。 
-show errors; -- 只显示最后一个执行语句所产生的错误。 
-desc tableabc; -- 查看表结构
-show create DATABASE test;
-SELECT VERSION();
-H:\test_db-master>mysql -t -u root -p < employees.sql --安装数据库
-SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES'; -- 查询mysql安全模式
-SET sql_safe_updates = 1; -- 开启安全模式，update不使用where会报错
-select version();  -- 查看mysql版本
-```
-```
-desc tableabc; -- 查看表结构
+desc table; -- 查看表结构
 +--------+-------------+------+-----+---------+----------------+
 | Field  | Type        | Null | Key | Default | Extra          |
 +--------+-------------+------+-----+---------+----------------+
@@ -107,10 +88,36 @@ show variables like 'innodb_file_per%'\G;
 ### 关键字
 NO_WRITE_TO_BINLOG -- 执行过程不写入二进制
 
-### set sql
+#### SET SQL
 ```
+SET sql_safe_updates = 1; -- 开启安全模式，update不使用where会报错
 SET FOREIGN_KEY_CHECKS = 0;     -- 禁用外键约束,作用域当前session,session重新建立连接会恢复默认值
 SET FOREIGN_KEY_CHECKS = 1;     -- 启用外键约束,作用域当前session
 SET GLOBAL FOREIGN_KEY_CHECKS = 0; 或 SET @@GLOBAL.FOREIGN_KEY_CHECKS = 0;  -- 禁用外键约束
-SELECT @@FOREIGN_KEY_CHECKS;    -- 查看外键约束
 ```
+#### SELECT SQL
+```
+SELECT @@FOREIGN_KEY_CHECKS;    -- 查看外键约束
+select version();  -- 查看mysql版本
+select database(); -- 显示正在使用的数据库
+```
+#### SHOW SQL
+```
+show create table tb_emp5; -- 显示表创建语句 show create table tb_emp5\G;
+show processlist; -- 显示系统中正在运行的所有进程
+show table status; -- 显示当前使用或者指定的database中的每个表的信息。信息包括表类型和表的最新更
+show tables或show tables from database_name; -- 显示当前数据库中所有表的名称。
+show databases; -- 显示mysql中所有数据库的名称
+show columns from table_name from database_name; 或show columns from database_name.table_name; -- 显示表中列名称
+show index from table_name; -- 显示表的索引。
+show variables like '%storage_engine%'; -- 显示默认 存储引擎
+show warnings; -- 显示最后一个执行的语句所产生的错误、警告和通知。
+show errors; -- 只显示最后一个执行语句所产生的错误。
+show create DATABASE test;
+SHOW VARIABLES LIKE 'SQL_SAFE_UPDATES'; -- 查询mysql安全模式
+```
+#### Other SQL
+```
+H:\test_db-master>mysql -t -u root -p < employees.sql --安装数据库
+```
+
