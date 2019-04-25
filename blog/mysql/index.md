@@ -16,6 +16,10 @@ show index from employees; -- 显示索引
 alter table employees drop index index_name; -- 删除索引
 create index index_first on employees(first_name); -- 创建单列索引
 create index index_first_last on employees(first_name,last_name); -- 创建多列索引
+alter table t add name varchar(20);
+alter table t  add key idx_name(name);  --添加索引
+drop index idx_name on t;   -- 删除索引
+alter table t add key idx_name(name(10));   --可以对整列进行索引，也可以值索引一个列的开头部分数据
 ```
 > 索引分类
 	分类 一
@@ -35,3 +39,74 @@ create index index_first_last on employees(first_name,last_name); -- 创建多�
     > 多表join操作
     > min(),max()时
     > sort,group时
+
+#### 聚集索引   clustered
+InnoDB存储引擎表—>索引组织表，即表中数据按照主键顺序存放
+而聚集索引(clustered index)就是按照每张表的主键构造一颗B+树，同时叶子节点存放整张表的行记录数据，
+所以也将聚集索引的叶子节点成为数据页。
+聚集索引的特性决定了索引组织表中的数据也是索引的一部分，同B+树数据结构一样，每个数据页通过一个双向链表来进行链接。
+实际数据页只能按照一颗B+树进行排序，因此每张表只能拥有一个聚集索引。
+多数情况下，查询优化器倾向于才用聚集索引，因为聚集索引能够在B+树索引的叶子节点上找到数据
+由于定义了数据的逻辑顺序，聚集索引能够快速查询结果，查询优化器能快速发现某段范围内的数据页需要扫描
+聚集索引检索效率比非聚集索引高，单独数据更新影响较大
+聚集索引不适用于 频繁更新的列
+聚集索引默认用在主键上
+
+
+#### 非聚集索引 secondary
+secondary index即辅助索引
+叶子节点并不包含行记录的全部数据，叶子节点除了包含键值以外，每个叶子节点中的索引行中还包含了一个书签（bookmark）.
+该书签用来告诉InnoDB存储引擎哪里可以找到与索引相对应的行数据。
+由于InnoDB存储引擎表是索引组织表，因此InnoDB存储引擎的辅助索引的书签就是相对应的行数据的聚集索引键。
+辅助索引的存在不影响数据在聚集索引中的组织，因为每张表可以有多个辅助索引。
+当通过辅助索引查找数据时，InnoDB存储引擎会遍历辅助索引并通过叶级别的指针获得指向主键索引的主键，在通过主键来查找完整的行记录；
+e.g.
+在高度为3的辅助索引树中查找数据，需要遍历3次找到指定主键，如果聚集索引树高度也为3，那么还需要对聚集索引书在进行3次查找，一共需要6次逻辑IO
+
+#### QUESTION
+1. 什么情况下，非聚集索引效率高于聚集索引
+id,name,code 三列
+如果在id,name上创建联合非聚集索引
+而且在之查询id,name的情况下，辅助索引效率高于聚集索引
+
+2. 聚集索引和辅助索引的不同
+每张表至多有一个聚集索引，但是能有多个辅助索引
+id为默认聚集索引
+聚集索引叶子节点就是最终的数据节点，而辅助索引的叶节点仍然是索引节点，但是他有一个书签作为指向最终数据的指针
+
+3. 主键是聚集索引的表上 插入数据 比主键是辅助索引的表上插入速度 速度要慢
+因为 主键有唯一性约束，要保证插入的数据没有重复，
+聚集索引以因为叶子节点就是数据页，所以检查主键唯一性需要遍历所有数据节点
+非聚集索引上已经包含了主键值，所以检查唯一性只需要遍历所有索引页即可，这样会减少很多IO消耗，所以速度快些
+
+#### show index from t;
+```
+    Table: t
+   Non_unique: 1            非唯一索引，主键是0
+     Key_name: idx_name
+ Seq_in_index: 1            索引中该列的位置
+  Column_name: name
+    Collation: A            列以什么方式存储在索引中，A或Null，B+树索引一直是A
+  Cardinality: 2            索引中唯一值的数目的估计值，尽可能接近1
+     Sub_part: 10           是否是列的部分索引
+       Packed: NULL         关键字如何被压缩，没有压缩则为NULL
+         Null: YES          索引列是否允许有NULL
+   Index_type: BTREE        索引类型，InnoDB存储引擎只支持B+树索引
+      Comment:              注释
+Index_comment:
+
+```
+#### ANALYZE TABLE
+```
+ANALYZE TABLE语句被写入二进制日志中，除非使用了自选的NO_WRITE_TO_BINLOG
+当Cardinality 为null,在某些情况下可能会发生索引建立了却没用到的情况。
+或者对两条基本一样的语句执行EXPLAIN，但是最终结果不一样：一个使用索引，一个使用全表扫描，这是最好做一次ANALYZE TABLE操作；
+
+```
+
+
+
+
+
+
+
