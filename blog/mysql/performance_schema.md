@@ -316,9 +316,6 @@ mysql> SELECT EVENT_NAME, COUNT_STAR, SUM_TIMER_WAIT, AVG_TIMER_WAIT FROM events
 ###
 
 
-
-
-
 ## 补充
 #### 查看session占用内存
 ```

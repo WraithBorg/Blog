@@ -30,6 +30,7 @@
   - [proxy](blog/mysql/proxy.md)
   - [rename database](blog/mysql/rename%20database.md)
   - [show engine innodb status](blog/mysql/show%20engine%20innodb%20status.md)
+  - [show profile](blog/mysql/show%20profile.md)
   - [table partitioning](blog/mysql/table%20partitioning.md)
   - [tips](blog/mysql/tips.md)
   - [virtual columns](blog/mysql/virtual%20columns.md)
