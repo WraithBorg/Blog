@@ -77,7 +77,17 @@ IOP瓶颈
 网络瓶颈
 用mpstat,iostat,sar,vmstat 查看系统性能状态
 
-
+#### SQL设计
+```
+1. 不为空的一律加 not null，varchar类型都不为空，详细见第五条
+2. 标记字段能用tinyint就用tinyint 别用varchar
+3. int（tinyint，smallint）型字段加 unsigned
+4. 能用smallint 就别用 int，能用tinyint就别用smallint
+5. 备注等字段虽然业务上可以为空，但也要设置为not null，并且加上 DEFAULT ''
+6. varchar 长度够用就好别太大
+7. COMMENT 必须添加，表的COMMENT也要加上
+8. 秉着最少占用存储的原则
+```
 
 
 

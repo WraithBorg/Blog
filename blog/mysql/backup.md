@@ -122,8 +122,18 @@ ERROR 1812 (HY000): Tablespace is missing for table `oldDB`.`employees`.
 再次执行 mysql> alter table employees import tablespace; 成功
 ```
 
+#### tips
+```
+mysql ibd文件存储地址 C:\ProgramData\MySQL\MySQL Server 5.5\data
+SHOW VARIABLES LIKE '%dir%'; -- 查看mysql路径
 
+```
 
+#### 依次备份表的形式备份数据库
+```
+create table newDB.user like oldDB.user;
+insert into newDB.user select * from oldDB.user;
+```
 
 
 

@@ -184,9 +184,9 @@ alter table t  partition by hash(id) partitions 10; -- 添加表分区
 
 #### 数据库应用分类
 ```
-OLTP（在线事务处理）
+OLTP（在线事务处理）on-line transaction processing
 e.g.    Bolg，电子商务，网络游戏
-OLAP（在线分析处理）
+OLAP（在线分析处理）on-line analytical processing
 e.g.    数据仓库，数据集市
 ```
 
