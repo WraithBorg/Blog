@@ -104,6 +104,17 @@ ANALYZE TABLE语句被写入二进制日志中，除非使用了自选的NO_WRIT
 
 ```
 
+#### Cardinality
+```
+对于性别，地区，类型这种低选择性字段 不需要添加索引
+取值范围广，几乎没有重复的字段适合用B+树索引
+利用 show index查看cardinality判断是否是高选择性
+如果cardinality非常小的话，就需要考虑是否有必要创建这个索引
+
+执行analyze table,show table status,show index以及访问information_schema下的表tables和statistics时会导致InnoDB存储引擎重新计算索引的cardinality值；
+但是如果表中数据量非常大的话 并且表中存在多个辅助索引时，执行上述操作可能会非常慢；
+```
+
 
 
 
