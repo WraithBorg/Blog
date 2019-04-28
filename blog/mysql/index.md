@@ -115,8 +115,17 @@ ANALYZE TABLE语句被写入二进制日志中，除非使用了自选的NO_WRIT
 但是如果表中数据量非常大的话 并且表中存在多个辅助索引时，执行上述操作可能会非常慢；
 ```
 
+#### tips
+```
+当mysql优化器错误使用索引导致sql运行慢是，可以强制优化器使用某个索引
+select * from departments force index(dept_name) limit 10;  -- 强制使用索引
+```
+```
+当sql语句可选索引非常多的时候，优化器选择执行计划的时间开销可能会大于sql语句本身
+，此时可以通过index hint强制优化器不进行各个执行路径的成本分析，直接选额指定索引完成查询；
+select * from t use index (a) where a=1 and b=2;
 
-
+```
 
 
 

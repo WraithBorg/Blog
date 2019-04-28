@@ -8,7 +8,7 @@ cd..; {切换上级目录}
 whereis mysql; ｛查找相关文件｝
 rm -rf 文件夹  {递归删除文件夹}
 clear {清除屏幕信息}
-
+alias mysqll='mysql -uroot -pThanos'   {设置别名}
 ```
 
 ### 安装vim
