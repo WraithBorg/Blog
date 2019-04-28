@@ -18,6 +18,7 @@
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
   - [data masking](blog/mysql/data%20masking.md)
+  - [data structure](blog/mysql/data%20structure.md)
   - [ddl](blog/mysql/ddl.md)
   - [engine](blog/mysql/engine.md)
   - [explain](blog/mysql/explain.md)
