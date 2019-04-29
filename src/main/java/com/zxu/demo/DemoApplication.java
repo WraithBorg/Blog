@@ -3,6 +3,7 @@ package com.zxu.demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -23,6 +24,11 @@ public class DemoApplication {
 	Logger log = LoggerFactory.getLogger(DemoApplication.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Value("${oldDB}")
+	private String oldDB;
+	@Value("${newDB}")
+	private String newDB;
+
 
 	@RequestMapping("/")
 	public String index(){
@@ -46,12 +52,12 @@ public class DemoApplication {
 			tableList.add(String.valueOf(map.values()).replace("[", "").replace("]", ""));
 		}
 		// 创建新数据库
-		jdbcTemplate.execute("drop database if exists newDB ");
-		jdbcTemplate.execute("create database newDB ");
+		jdbcTemplate.execute("drop database if exists "+newDB+" ");
+		jdbcTemplate.execute("create database "+newDB+" ");
 		// 创建新表并删除表空间
 		for (String s : tableList) {
-			jdbcTemplate.execute("create table newDB." + s + " like old." + s);
-			jdbcTemplate.execute("alter table newDB." + s + " discard tablespace");
+			jdbcTemplate.execute("create table "+newDB+"." + s + " like "+oldDB+"." + s);
+			jdbcTemplate.execute("alter table "+newDB+"." + s + " discard tablespace");
 		}
 		System.out.println("创建新数据库 创建新表并删除表空间");
 		// 生成表空间 cfg
@@ -63,7 +69,7 @@ public class DemoApplication {
 		jdbcTemplate.execute(sb.toString());
 		System.out.println("生成表空间");
 		// 复制并移动表空间文件
-		String copyCmd = "cmd.exe /c xcopy \""+dataPath+"old\" \""+dataPath+"newdb\" /c/e/r/y";
+		String copyCmd = "cmd.exe /c xcopy \""+dataPath+""+oldDB+"\" \""+dataPath+""+newDB+"\" /c/e/r/y";
 		try {
 			System.out.println(copyCmd);
 			System.out.println("开始移动表空间" + System.currentTimeMillis());
@@ -73,7 +79,7 @@ public class DemoApplication {
 			jdbcTemplate.execute("unlock tables");
 			// 恢复表空间
 			for (String s : tableList) {
-				String importSql = "alter table newDB." + s + " import tablespace";
+				String importSql = "alter table "+newDB+"." + s + " import tablespace";
 				System.out.println(importSql);
 				jdbcTemplate.execute(importSql);
 			}
