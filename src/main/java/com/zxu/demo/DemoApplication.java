@@ -32,10 +32,13 @@ public class DemoApplication {
 
 	@RequestMapping("/export")
 	public String export() {
+
+		long begin = System.currentTimeMillis();
+		System.out.println("开始转储数据" + String.valueOf(begin));
 		// 获取表空间文件存储地址
 		List<Map<String, Object>> paths = jdbcTemplate.queryForList("show variables like 'datadir'");
 		String dataPath = (String) paths.get(0).get("Value");
-
+		System.out.println("获取表空间文件存储地址:"+dataPath);
 		// 需要导入的表的列表
 		List<Map<String, Object>> maps = jdbcTemplate.queryForList("show tables");
 		List<String> tableList = new ArrayList<>();// 表名数组
@@ -50,6 +53,7 @@ public class DemoApplication {
 			jdbcTemplate.execute("create table newDB." + s + " like old." + s);
 			jdbcTemplate.execute("alter table newDB." + s + " discard tablespace");
 		}
+		System.out.println("创建新数据库 创建新表并删除表空间");
 		// 生成表空间 cfg
 		StringBuffer sb = new StringBuffer(" flush tables ");
 		for (String s : tableList) {
@@ -57,16 +61,15 @@ public class DemoApplication {
 		}
 		sb.deleteCharAt(sb.length() - 1).append(" for export;");
 		jdbcTemplate.execute(sb.toString());
+		System.out.println("生成表空间");
 		// 复制并移动表空间文件
 		String copyCmd = "cmd.exe /c xcopy \""+dataPath+"old\" \""+dataPath+"newdb\" /c/e/r/y";
 		try {
-			Runtime.getRuntime().exec(copyCmd);
 			System.out.println(copyCmd);
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			System.out.println("开始移动表空间" + System.currentTimeMillis());
+			Process process = Runtime.getRuntime().exec(copyCmd);
+			process.waitFor();
+			System.out.println("移动表空间结束" + System.currentTimeMillis());
 			jdbcTemplate.execute("unlock tables");
 			// 恢复表空间
 			for (String s : tableList) {
@@ -74,7 +77,8 @@ public class DemoApplication {
 				System.out.println(importSql);
 				jdbcTemplate.execute(importSql);
 			}
-		} catch (IOException e) {
+			System.out.println("转储结束：" + (begin - System.currentTimeMillis()));
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 
