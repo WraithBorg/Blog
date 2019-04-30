@@ -34,7 +34,7 @@
   - [show engine innodb status](blog/mysql/show%20engine%20innodb%20status.md)
   - [show profile](blog/mysql/show%20profile.md)
   - [table partitioning](blog/mysql/table%20partitioning.md)
-  - [tablespace](blog/mysql/table%20tablespace.md)
+  - [tablespace](blog/mysql/tablespace.md)
   - [tips](blog/mysql/tips.md)
   - [virtual columns](blog/mysql/virtual%20columns.md)
   - [xjd](blog/mysql/xjd.md)
