@@ -135,6 +135,8 @@ create table newDB.user like oldDB.user;
 insert into newDB.user select * from oldDB.user;
 ```
 
+#### 官方文档
+https://dev.mysql.com/doc/refman/5.7/en/backup-methods.html
 
 
 
