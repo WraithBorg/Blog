@@ -12,7 +12,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +38,9 @@ public class DemoApplication {
 		log.warn("we ==++");
 		return "Welcome";
 	}
-
+	/**
+	 *  java 表空间传输实例
+	 */
 	@RequestMapping("/export")
 	public String export() {
 
@@ -51,6 +56,7 @@ public class DemoApplication {
 		for (Map<String, Object> map : maps) {
 			tableList.add(String.valueOf(map.values()).replace("[", "").replace("]", ""));
 		}
+		System.out.println("有个"+tableList.size()+"表需要导入");
 		// 创建新数据库
 		jdbcTemplate.execute("drop database if exists "+newDB+" ");
 		jdbcTemplate.execute("create database "+newDB+" ");
@@ -69,11 +75,22 @@ public class DemoApplication {
 		jdbcTemplate.execute(sb.toString());
 		System.out.println("生成表空间");
 		// 复制并移动表空间文件
-		String copyCmd = "cmd.exe /c xcopy \""+dataPath+""+oldDB+"\" \""+dataPath+""+newDB+"\" /c/e/r/y";
+		String copyCmd = "cmd.exe /c xcopy \""+dataPath+""+oldDB+"\\*\" \""+dataPath+""+newDB+"\" /c/e/r/y";
 		try {
 			System.out.println(copyCmd);
 			System.out.println("开始移动表空间" + System.currentTimeMillis());
 			Process process = Runtime.getRuntime().exec(copyCmd);
+
+			InputStream is = process.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			String line;
+			while((line = reader.readLine())!= null){
+				System.out.println(line);
+			}
+			is.close();
+			reader.close();
+			process.destroy();
+
 			process.waitFor();
 			System.out.println("移动表空间结束" + System.currentTimeMillis());
 			jdbcTemplate.execute("unlock tables");
