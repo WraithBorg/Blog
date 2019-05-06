@@ -11,9 +11,9 @@
 * GIT
   - [command](blog/git/command.md)
 * JAVA
-  - [synchronized](blog/java/generate%20bill%20code.md)
-  - [generate bill code](blog/java/generate%20random%20code.md)
-  - [generate random code](blog/java/synchronized.md)
+  - [synchronized](blog/java/synchronized.md)
+  - [generate bill code](blog/java/generate%20bill%20code.md)
+  - [generate random code](blog/java/generate%20random%20code.md)
 * MYSQL
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
