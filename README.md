@@ -37,6 +37,7 @@
   - [table partitioning](blog/mysql/table%20partitioning.md)
   - [tablespace](blog/mysql/tablespace.md)
   - [tips](blog/mysql/tips.md)
+  - [transaction](blog/mysql/transaction.md)
   - [virtual columns](blog/mysql/virtual%20columns.md)
   - [xjd](blog/mysql/xjd.md)
 * Tomcat
