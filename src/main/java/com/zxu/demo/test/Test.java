@@ -1,5 +1,7 @@
 package com.zxu.demo.test;
 
+import org.hibernate.validator.internal.util.stereotypes.ThreadSafe;
+
 import java.io.IOException;
 
 public class Test {

@@ -26,6 +26,7 @@
   - [information_schema](blog/mysql/information_schema.md)
   - [innodb graphic](blog/mysql/innodb%20graphic.md)
   - [install](blog/mysql/install.md)
+  - [lock](blog/mysql/lock.md)
   - [oom](blog/mysql/oom.md)
   - [optimize](blog/mysql/optimize.md)
   - [performance_schema](blog/mysql/performance_schema.md)
