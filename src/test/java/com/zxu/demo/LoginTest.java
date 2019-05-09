@@ -48,5 +48,18 @@ public class LoginTest {
         Assert.assertEquals(true, subject.isAuthenticated());
         subject.logout();
     }
-
+    @Test
+    public void testMultiCustomRealm(){
+        IniSecurityManagerFactory factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        SecurityManager manager = factory.getInstance();
+        SecurityUtils.setSecurityManager(manager);
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("wang", "1234");
+        try {
+            subject.login(token);
+        }catch (AuthenticationException e){
+            e.printStackTrace();
+        }
+        Assert.assertEquals(true, subject.isAuthenticated());
+    }
 }
