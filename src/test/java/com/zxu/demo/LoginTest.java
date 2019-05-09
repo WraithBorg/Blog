@@ -62,4 +62,6 @@ public class LoginTest {
         }
         Assert.assertEquals(true, subject.isAuthenticated());
     }
+
+
 }

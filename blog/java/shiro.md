@@ -31,5 +31,8 @@ Realm 由开发人员自己进行注入
 可扩展，易插拔（容易插入用户自定义实现）
 
 #### TIPS
-CRUD
-create retrieve(读取查询） update delete
+```
+CRUD create retrieve(读取查询） update delete
+Realm 一般继承AuthorizingRealm(授权)即可，其继承了AuthenticatingRealm(身份验证),间接继承了CachingRealm(缓存实现)
+
+```
