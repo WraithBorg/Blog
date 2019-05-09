@@ -11,9 +11,13 @@
 * GIT
   - [command](blog/git/command.md)
 * JAVA
-  - [synchronized](blog/java/synchronized.md)
   - [generate bill code](blog/java/generate%20bill%20code.md)
   - [generate random code](blog/java/generate%20random%20code.md)
+  - [java](blog/java/java.md)
+  - [shiro](blog/java/shiro.md)
+  - [spring boot](blog/java/spring%20boot.md)
+  - [synchronized](blog/java/synchronized.md)
+  - [thread](blog/java/thread.md)
 * MYSQL
   - [backup](blog/mysql/backup.md)
   - [basic](blog/mysql/basic.md)
