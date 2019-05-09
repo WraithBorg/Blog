@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class LoginTest {
     @Test
-    public void testH() {
+    public void testHelloWorld() {
         // 获取SecurityManager工厂（此书使用ini配置文件初始化SecurityManager)
         Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
         // 获取Security实例 并绑定给SecurityUtils ，全局设置，设置一次即可
@@ -33,4 +33,20 @@ public class LoginTest {
         // 退出
         subject.logout();
     }
+    @Test
+    public void testCustomRealm(){
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        SecurityManager securityManager = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("zhang1", "123");
+        try{
+            subject.login(token);
+        }catch (AuthenticationException e){
+            e.printStackTrace();
+        }
+        Assert.assertEquals(true, subject.isAuthenticated());
+        subject.logout();
+    }
+
 }
