@@ -188,7 +188,7 @@ MySQL中没有full join，可以用以下方式来解决
 
     在使用STRAIGHT_JOIN有个前提条件是该查询是内连接，也就是inner join。其他链接不推荐使用STRAIGHT_JOIN，否则可能造成查询结果不准确。
 
-
+find in set 没有用到索引，使用in
 
 
 
