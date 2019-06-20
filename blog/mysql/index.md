@@ -20,6 +20,7 @@ alter table t add name varchar(20);
 alter table t  add key idx_name(name);  --添加索引
 drop index idx_name on t;   -- 删除索引
 alter table t add key idx_name(name(10));   --可以对整列进行索引，也可以值索引一个列的开头部分数据
+ alter table appinfo drop index SFACE; --删除唯一索引
 ```
 > 索引分类
 	分类 一
