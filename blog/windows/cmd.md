@@ -11,3 +11,6 @@ tasklist|findstr "4840"
 net use
 net use * /del 或 net use \\192.168.13.152\outsale-middleware /del /y
 pause
+
+### Tips
+进入超级管理员终端 win+x a
