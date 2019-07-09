@@ -16,6 +16,7 @@ mysqldump --default-character-set=GBK zzc -uroot -padmin --opt --triggers | mysq
 mysqldump zzz -uroot -padmin --master-data --single-transaction --databases | mysql xxx -u root -padmin
 3. 生成数据库备份文件
 mysqldump -u root -p zzz > d:/zzz.sql
+mysqldump -hlocalhost -uroot -padmin jisuding >"c:/jisuding.sql"
 ```
 ```
 仅复制数据结构
