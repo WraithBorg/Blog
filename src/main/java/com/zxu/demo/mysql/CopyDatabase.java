@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CopyDatabase {
-    Logger log = LoggerFactory.getLogger(DemoApplication.class);
+    private static final  Logger log = LoggerFactory.getLogger(DemoApplication.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Value("${oldDB}")
