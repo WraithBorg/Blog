@@ -14,6 +14,7 @@ frp是一个可用于内网穿透的高性能的反向代理应用，支持tcp,u
 [启动frp服务]# frps start
 
 开放相应端口号
+如果报错则 yum install firewalld 或者 systemctl start firewalld开启防火墙 或者切换root用户 sudo su
 [root@vultr ~]# systemctl status firewalld.service
 [root@vultr ~]# sudo firewall-cmd --list-all
 [root@vultr ~]# sudo firewall-cmd --add-service=http --permanent
@@ -63,7 +64,7 @@ remote_port = 3389 远程访问用端口
 ##### Windows 客户端启动frp
 ```
 cmd命令行 运行
-d:\frp\frpc.exe -c d:\frp\frpc.ini
+c:\frp\frpc.exe -c c:\frp\frpc.ini
 浏览器访问
 http://a.thelonegunmen.club
 ```
