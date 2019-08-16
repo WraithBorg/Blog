@@ -215,11 +215,38 @@ TODO
 · https://dev.mysql.com/doc/refman/8.0/en/index-merge-optimization.html
 
 ```
+#### 分页查询优化
+```sql
+-- 传统分页
+EXPLAIN SELECT
+	*
+FROM
+	storebilldt
+ORDER BY
+	batchcode
+LIMIT 12000,
+ 50;
 
-#### 查询慢SQL
-```mysql
--- 查看慢SQL日志是否启用
-show variables like 'log_slow_queries'; 
 
- show variables like 'long_query_time';
+-- 新分页
+SELECT
+	*
+FROM
+	storebilldt dt
+INNER JOIN (
+	SELECT
+		id
+	FROM
+		storebilldt
+	ORDER BY
+		batchcode
+	LIMIT 12000,
+	50
+) t USING (id)
+ORDER BY
+	batchcode;
+
+
+
 ```
+
