@@ -190,11 +190,36 @@ MySQL中没有full join，可以用以下方式来解决
 
 find in set 没有用到索引，使用in
 
+```
+#### 时间复杂度/空间复杂夫
+```
+O(1) 
+    最低时间复杂度， 耗时/耗空间，无论数据如何变化，时/耗空间都不变
+    哈希算法就是典型的O(1)时间复杂度，无论数据规模多大，都可以在一次计算后找到目标
+O(n)
+    数据量增大几倍，耗时也增大几倍
+    遍历数组
+O(n^2)
+    数据量增大n倍时，耗时增大n的平方倍
+    冒泡排序排一个数组，对于n个变量的数组，需要交换变量位置n^2次，那么算法复杂度就是O(n^2)
+O(log n)
+    当数据增大n倍时，耗时增大log n倍（这里的log是以2为底的，比如，当数据增大256倍时，耗时只增大8倍，是比线性还要低的时间复杂度）
+    二分查找就是O(log n)的算法，每找一次排除一半的可能，256个数据中查找只要找8次就可以找到目标
+O(n log n)
+    n乘以log n，当数据增大256倍时，耗时增大256*8=2048倍。这个复杂度高于线性低于平方。归并排序就是O(n log n)的时间复杂度。 
+```
+#### sql语句state 状态result sorting
+```
+TODO
+如果查询计划type类型是 index_merge（索引合并排序）
+· https://dev.mysql.com/doc/refman/8.0/en/index-merge-optimization.html
 
+```
 
+#### 查询慢SQL
+```mysql
+-- 查看慢SQL日志是否启用
+show variables like 'log_slow_queries'; 
 
-
-
-
-
+ show variables like 'long_query_time';
 ```

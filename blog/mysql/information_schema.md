@@ -54,6 +54,37 @@ Auto_increment：做自增主键的自动增量当前值
   * 数据库中已有的数据被删除（delete）后，对于这些数据原有的碎片空间，查询（select）数据时是否会被扫描
   * 再次添加（insert）数据时，碎片空间是否会被重复利用
   * 如何物理地回收这些碎片空间，以减小存储压力，回收碎片对系统有何影响
+  
+#### 统计表的数量
+```
+EXPLAIN SELECT
+	COUNT(*) TABLES,
+	table_schema
+FROM
+	information_schema.`TABLES`
+WHERE
+	TABLE_SCHEMA = 'csjsd';
+	
+```
+#### 统计每个表的记录数
+```
+USE information_schema;
+
+SELECT
+	table_name,
+	table_rows
+FROM
+	TABLES
+WHERE
+	TABLE_SCHEMA = 'zxcs'
+ORDER BY
+	table_rows DESC;
+	
+// table_rows 和  SELECT count(*) from storebill; 行数会不一样
+因为num_rows 是对表做 statistics analysis后更新的；
+如果要同步的的话，就执行 ANALYZE TABLE storebill;
+
+```
 
 
 

@@ -35,6 +35,7 @@ alter table t add key idx_name(name(10));   --可以对整列进行索引，也�
 	> like 关键字查询 第一个字符为 % ，索引会失效，只有%不在第一个位置 索引才会起作用
 	> 使用多列索引的时候，只有使用第一个字段，索引才会生效
 	> 使用or关键字，且or前后都是索引时，索引才会生效
+	> NOT NULL字段，使用IS NULL和IS NOT NULL 索引失效
 
 #### 使用场景
     > 多表join操作
@@ -140,6 +141,19 @@ select * from t use index (a) where a=1 and b=2;
 ```
 复合索引也是一颗B+树，不过B+树上叶子节点上的键值 大于1，而且是有序的
 B+树并不能找到给定键值的具体行，只是找到数据行所在的页，然后数据库把页读到内存中，再在内存中进行查找获取想要得到的数据；
+```
+
+#### 索引列 NULL ， NOT NULL DEFAULT '' 选择
+```
+索引字段为null 效率会下降很多，
+NULL字段 很难进行查询优化
+NULLl列加索引，需要额外空间
+含NULL符合索引无效
+
+---
+对于MyISAM表， NULL列需要行中的额外空间来记录它们的值是否为 NULL。每NULL 列额外增加一位，向上舍入到最近的字节。 （https://dev.mysql.com/doc/mysql-reslimits-excerpt/5.7/en/column-count-limit.html）
+14.11 InnoDB行格式
+SQL NULL值在记录目录中保留一个或两个字节。NULL如果存储在可变长度列中，则SQL 值将在记录的数据部分中保留零个字节。对于固定长度的列，列的固定长度保留在记录的数据部分中。为NULL 值保留固定空间允许将列从NULL非NULL值更新 到非值，而不会导致索引页碎片
 ```
 
 
