@@ -32,7 +32,7 @@ CREATE TABLE `syslog` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统日志';
 ```
-```
+``` sql
 SELECT COUNT(*) FROM `syslog`;
 SELECT id FROM syslog LIMIT 1400000,100;
 SELECT * FROM syslog LIMIT 1400000, 100;
@@ -49,5 +49,6 @@ test.syslog	optimize	status	OK
 ```
 > Summary
 ```
-alter table  add column 会和 OPTIMIZE TABLE 一样， 重新组织表数据和关联索引数据的物理存储，以减少存储空间并提高访问表时的I / O效率
+alter table  add column 会和 OPTIMIZE TABLE 一样，
+重新组织表数据和关联索引数据的物理存储，以减少存储空间并提高访问表时的I/O效率
 ```
