@@ -299,4 +299,28 @@ LIMIT 1400000,
  100;
 ---
 ALTER TABLE syslog ADD COLUMN test_four VARCHAR(32) DEFAULT 'What Happen';
+
+执行 OPTIMIZE TABLE syslog;
+结果
+Table	Op	Msg_type	Msg_text
+test.syslog	optimize	note	Table does not support optimize, doing recreate + analyze instead
+test.syslog	optimize	status	OK
+
+alter table  add column 会和 OPTIMIZE TABLE 一样， 重新组织表数据和关联索引数据的物理存储，以减少存储空间并提高访问表时的I / O效率
+```
+
+### 查询表碎片
+```sql
+
+-- https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html
+SELECT
+	table_schema,
+	table_name,
+	data_free / 1024 / 1024 AS data_free_MB
+FROM
+	information_schema. TABLES
+WHERE
+	ENGINE LIKE 'InnoDB'
+AND TABLE_NAME = 'syslog'
+AND TABLE_SCHEMA = 'test';
 ```
