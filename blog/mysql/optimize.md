@@ -215,40 +215,9 @@ TODO
 · https://dev.mysql.com/doc/refman/8.0/en/index-merge-optimization.html
 
 ```
+
 #### 分页查询优化
-```sql
--- 传统分页
-EXPLAIN SELECT
-	*
-FROM
-	storebilldt
-ORDER BY
-	batchcode
-LIMIT 12000,
- 50;
-
-
--- 新分页
-SELECT
-	*
-FROM
-	storebilldt dt
-INNER JOIN (
-	SELECT
-		id
-	FROM
-		storebilldt
-	ORDER BY
-		batchcode
-	LIMIT 12000,
-	50
-) t USING (id)
-ORDER BY
-	batchcode;
-
-
-
-```
+- [optimize table](limit.md)
 
 ### 表碎片整理
 - [optimize table](data_free.md)
