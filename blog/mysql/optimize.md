@@ -266,3 +266,7 @@ WHERE
 AND TABLE_NAME = 'syslog'
 AND TABLE_SCHEMA = 'test';
 ```
+
+### OPTIMIZE TABLE
+适当执行OPTIMIZE TABLE
+- [optimize table](blog/mysql/optimize%20table.md)
