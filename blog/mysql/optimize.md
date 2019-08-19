@@ -246,26 +246,12 @@ INNER JOIN (
 ORDER BY
 	batchcode;
 
+
+
 ```
 
-#### Mysql 碎片
-生产环境 采用独立的表空间
-
-### 查询表碎片
-```sql
-
--- https://dev.mysql.com/doc/refman/5.7/en/optimize-table.html
-SELECT
-	table_schema,
-	table_name,
-	data_free / 1024 / 1024 AS data_free_MB
-FROM
-	information_schema. TABLES
-WHERE
-	ENGINE LIKE 'InnoDB'
-AND TABLE_NAME = 'syslog'
-AND TABLE_SCHEMA = 'test';
-```
+### 表碎片整理
+- [optimize table](data_free.md)
 
 ### OPTIMIZE TABLE
 适当执行OPTIMIZE TABLE
