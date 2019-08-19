@@ -5,13 +5,14 @@
 ## OPTIMIZE　TABLE 使用场景
 > 批量插入几十万条数据后，查询速度明显变慢，执行OPTIMIZE TABLE 或 ALTER TABLE ADD COLUMN 语句后，查询速度明显变快
 执行SQL前。
-
 > ALTER　TABLE ADD COLUMN后 查询速度也会明显变慢， 执行OPTIMIZE TABLE后 查询速度会提升不少
+
+#### 执行SQL前
 - ![image](after_alter_table/mysql_after_alter.png)
-执行SQL后
+#### 执行SQL后
 - ![image](after_alter_table/mysql_before_alter.png)
 
-> 相关SQL
+#### 相关SQL
 ``` sql
 -- CREATE TABLE
 CREATE TABLE `syslog` (
@@ -47,7 +48,7 @@ Table	Op	Msg_type	Msg_text
 test.syslog	optimize	note	Table does not support optimize, doing recreate + analyze instead
 test.syslog	optimize	status	OK
 ```
-> Summary
+#### Summary
 ```
 alter table  add column 会和 OPTIMIZE TABLE 一样，
 重新组织表数据和关联索引数据的物理存储，以减少存储空间并提高访问表时的I/O效率
