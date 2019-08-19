@@ -269,4 +269,4 @@ AND TABLE_SCHEMA = 'test';
 
 ### OPTIMIZE TABLE
 适当执行OPTIMIZE TABLE
-- [optimize table](blog/mysql/optimize%20table.md)
+- [optimize table](optimize%20table.md)
