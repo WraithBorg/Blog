@@ -33,6 +33,7 @@
   - [lock](blog/mysql/lock.md)
   - [oom](blog/mysql/oom.md)
   - [optimize](blog/mysql/optimize.md)
+  - [optimize table](blog/mysql/optimize%20table.md)
   - [performance_schema](blog/mysql/performance_schema.md)
   - [proxy](blog/mysql/proxy.md)
   - [rename database](blog/mysql/rename%20database.md)
