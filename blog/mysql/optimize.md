@@ -1,6 +1,3 @@
-[TOC]
-## 优化
-
 ### 优化子查询
 	join不需要建立临时表，所以速度比子查询快
 
@@ -19,13 +16,13 @@
 >* 禁止自动提交
 
 ### 分析表
-- [analyze table](analyze table.md)
+- [analyze table](analyze%20table.md)
 
 ### 检查表
-- [check table](check table.md)
+- [check table](check%20table.md)
 
 #### show status
-- [show status](show status.md)
+- [show status](show%20status.md)
 
 #### 性能瓶颈
 CPU瓶颈
@@ -40,7 +37,7 @@ IOP瓶颈
 >* 缓冲池使用情况
 
 ####    优化数据大小  Optimizing Data Size
-- [optimize data](optimize data.md)
+- [optimize data](optimize%20data.md)
 
 #### 基于索引类型 BTree的优化方案
 - [btree_sql](btree_sql.md)
