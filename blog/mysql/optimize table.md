@@ -53,3 +53,15 @@ test.syslog	optimize	status	OK
 alter table  add column 会和 OPTIMIZE TABLE 一样，
 重新组织表数据和关联索引数据的物理存储，以减少存储空间并提高访问表时的I/O效率
 ```
+
+## 优化表
+使用OPTIMIZE TABLE语句优化表，但只能优化VARCHAR BOLB TEXT 类型字段
+OPTIMIZE [LOCAL | NO_WRITE_TO_BINLOG] TABLE table01,table02;
+```
+notice: InnoDB 表可能会执行报错
+解决：
+ALTER TABLE table.name ENGINE='InnoDB';  -- 转移表数据，去掉碎片直接优化，不过会影响业务
+或者
+在启动的时候指定--skip-new或者--safe-mode选项来支持optimize功能
+然后在执行OPTIMEZE
+```
