@@ -13,7 +13,7 @@ select * from 表A where id in (select id from 表B)
 原sql语句
     select colname … from A表 where a.id not in (select b.id from B表)
 高效的sql语句
-    select colname … from A表 Left join B表 on where a.id = b.id where b.id is null
+    select colname … from A表 Left join B表 on a.id = b.id where b.id is null
 ```
 
 #### Common
