@@ -2,7 +2,7 @@
 #### basic
 ```
 退出编辑中的sql quit; 或者 'quit;
-查看mysql 安装路径
+查看mysql 安装路径 安装目录
 select @@basedir as basePath from dual    
 C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqldump.exe
 TINYINT 8bit 无符号数最大值 2^8 - 1  ，有符号数最大值2^7 - 1;
