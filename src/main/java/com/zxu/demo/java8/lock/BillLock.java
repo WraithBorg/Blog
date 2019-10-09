@@ -29,10 +29,10 @@ public class BillLock  implements AutoCloseable {
         if (billIds != null && billIds.length != 0) {
             for (String billId : billIds) {
 //                logger.error("单据加锁：{}", billId);
-                if (BillLockCache.put(billId, "") == null) {
+                if (RedisCache.put(billId, "") == null) {
                     lockedBillIds.add(billId);
                 } else {
-                    throw new RuntimeException(BillLockCache.get(billId) + " 正在操作该单据，请重新打开单据!");
+                    throw new RuntimeException(RedisCache.get(billId) + " 正在操作该单据，请重新打开单据!");
                 }
             }
         }
@@ -43,7 +43,7 @@ public class BillLock  implements AutoCloseable {
         if (lockedBillIds != null && lockedBillIds.size() > 0) {
             for (String billId : lockedBillIds) {
 //                logger.error("单据解锁：{}", billId);
-                BillLockCache.remove(billId);
+                RedisCache.remove(billId);
             }
         }
     }
