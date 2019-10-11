@@ -11,7 +11,7 @@ public class TestLockController {
 	/**
 	 * 批量处理订单
 	 */
-	@RequestMapping("/test.do")
+	@RequestMapping("/batchDealBills.do")
 	public ReturnResult batchDealBills(String[] billIds) {
 		try (NewLock newLock = new NewLock()) {
 			ReturnResult returnResult = newLock.lockKeys(billIds);
