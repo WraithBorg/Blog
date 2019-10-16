@@ -1,15 +1,12 @@
 package com.zxu.demo.test;
 
-import com.zxu.demo.java8.lock.BillLock;
+import java.util.ServiceLoader;
 
 public class Test {
     public static void main(String[] args) {
-        try (BillLock lock = new BillLock("111111","2222","33333")) {
-            System.out.printf("1");
-            if (true) {
-                throw new RuntimeException("测试");
-            }
-            System.out.printf("111");
+        ServiceLoader<DogService> loaders = ServiceLoader.load(DogService.class);
+        for (DogService d : loaders) {
+            d.sleep();
         }
 
     }
