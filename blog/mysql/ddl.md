@@ -29,6 +29,7 @@ Create Table: CREATE TABLE `test` (
 
 DROP table IF EXISTS `test`; -- 删除表
 alter table test01 rename test; -- 表重命名
+ALTER TABLE `jc_member` CHANGE COLUMN `createDate` `create_date` datetime NOT NULL; -- 列改名
 ALTER TABLE test MODIFY num varchar(32); -- 修改字段类型
 ALTER TABLE test CHANGE num num2 int(11); -- 替换字段
 ALTER TABLE test ADD num int(11); -- 添加字段
