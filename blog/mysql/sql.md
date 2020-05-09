@@ -77,3 +77,18 @@ SELECT t_1.* FROM t_1 WHERE EXISTS (SELECT t_2_id FROM t_2 WHERE t_1_id = 1) AND
 相反，对于同样逻辑的OR列表，每次都要遍历，
 所以OR相应的算法复杂度为O(n)(因此对于遍历非常大的OR列表，会很缓慢)。
 ```
+
+# 天数日期转换
+SELECT TO_DAYS('2020-02-18'); -- 737838
+SELECT FROM_DAYS('737838'); -- 2020-02-18
+
+# 为什么别名不能在group by中用？ by中用
+```$xslt
+因为SQL的执行顺序为：
+先where 再group 再having 再select 后order.
+
+sql语句解析的顺序的问题。先where条件过滤出需要的纪录，再对筛选出来的记录分组group加having。接下来就是选取字段的过滤select最后order排序。所以别名只有在select和order by内才可以只用。
+————————————————
+版权声明：本文为CSDN博主「从心所愿」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/sanbingyutuoniao123/article/details/53523267
+```

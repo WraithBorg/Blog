@@ -98,6 +98,7 @@ index
     +----+-------------+----------+------------+-------+---------------+---------+---------+------+-------+----------+-------+
 all
     全表扫描，如果表是第一个没标记const的表，非常不好，可以增加更多索引来避免all连接
+    e.g. 即时日期createDate字段为索引，如果日期查询范围涵盖整个表，那个type也等于ALL
     mysql> explain select * from salaries order by from_date limit 10000,1;
     +----+-------------+----------+------------+------+---------------+------+---------+------+---------+----------+----------------+
     | id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows    | filtered | Extra          |
