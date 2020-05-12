@@ -161,7 +161,21 @@ cd ~/. 和cd ~ 和cd ~/效果一样
 ### 返回到根目录
 cd /
 
-#### 删除文件
+#### 删除文件夹xxx
+rm -rf xxx
+
+#### 创建文件夹xxx
+mkdir -p xxx
 
 #### linux 普通用户切换root提示用户不存在的解决办法
 su - root -s /bin/bash
+
+#### 查看内核
+[root@test ~]# uname -sr
+Linux 5.6.12-1.el7.elrepo.x86_64
+
+#### CentOS 查看版本哈
+[root@test sinatra]# rpm -q centos-release
+centos-release-7-8.2003.0.el7.centos.x86_64
+[root@test sinatra]# cat /etc/redhat-release
+CentOS Linux release 7.8.2003 (Core)

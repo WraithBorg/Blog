@@ -1,3 +1,5 @@
+#### maven打包
+mvn -clean package
 #### 启动spring boot
 :: 开启
 @echo off
