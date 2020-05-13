@@ -9,6 +9,7 @@ whereis mysql; ｛查找相关文件｝
 rm -rf 文件夹  {递归删除文件夹}
 clear {清除屏幕信息}
 alias mysqll='mysql -uroot -pThanos'   {设置别名}
+ip addr 显示网卡信息和ip地址
 ```
 
 ### 安装vim
@@ -179,3 +180,49 @@ Linux 5.6.12-1.el7.elrepo.x86_64
 centos-release-7-8.2003.0.el7.centos.x86_64
 [root@test sinatra]# cat /etc/redhat-release
 CentOS Linux release 7.8.2003 (Core)
+
+#### 安装图形界面
+```
+yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
+```
+#### 设置图形界面
+```
+systemctl get-default #获取当前系统运行形式，会显示multi-user.target（命令行终端），或者：graphical.target
+systemctl set-default graphical.target #设置默认启动为图形界面，reboot后界面会自动是图形窗口了。
+systemctl set-default multi-user.target #换回命令界面启动
+```
+#### 文件搜索
+```
+whereis 命令名
+#搜索命令所在路径及帮助文档所在位置
+选项：
+ -b :只查找可执行文件位置
+ -m:只查找帮助文件
+[root@localhost ~]# whereis ls
+
+ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz
+[root@localhost ~]# whereis -b ls
+ls: /usr/bin/ls
+[root@localhost ~]# whereis -m ls
+ls: /usr/share/man/man1/ls.1.gz
+我们可以查到ls命令的位置以及帮助文档的位置
+
+which 文件名
+搜索命令所在路径及别名
+[root@localhost ~]# which ls
+alias ls='ls --color=auto'
+/usr/bin/ls
+相比 ，多了个别名；
+```
+#### 添加软链接
+```
+ln -s /usr/bin/google-chrome-stable /bin/chrome
+```
+#### 查看当前软件的安装信息
+sudo yum info google-chrome-stable
+
+#### 创建并进入文件夹目录
+[root@test local]# mkdir nginx-docker-demo && cd nginx-docker-demo
+
+#### 将文件夹A重命名为B
+mv A B
