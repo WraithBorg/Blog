@@ -92,3 +92,13 @@ sql语句解析的顺序的问题。先where条件过滤出需要的纪录，再
 版权声明：本文为CSDN博主「从心所愿」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/sanbingyutuoniao123/article/details/53523267
 ```
+```
+# 保留两位小数  结果=2.10
+select concat(cast(2.100 as decimal(18,2)),"美元");
+
+# 保留四位小数  结果=2.1000
+select concat(cast(2.100 as decimal(18,4)),"美元");
+
+# 保留N位小数 ,但是末尾不要0，结果=2.1
+select concat(0+CAST(2.100 as char),"美元");
+```

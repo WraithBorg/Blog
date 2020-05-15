@@ -226,3 +226,45 @@ sudo yum info google-chrome-stable
 
 #### 将文件夹A重命名为B
 mv A B
+
+#### 搜索包含某个文本的文件
+[root@test local]# grep -r "213sss" gitspace
+gitspace/Demo.class:213sss
+
+#### 搜索文件
+```
+grep -r "查询内容"  文件目录
+grep -r -l "查询内容" 
+  ##根据时间查找日志
+  grep '2020-02-27 17:5[6,9]' xinyar-erp-auto.log
+
+  ##查询指定时间段内的日志
+
+  eg、grep -E '2020-02-27 14:5[5-9]|2020-02-28 15:0[0-5]' xinyar-erp-auto.log
+
+  ##查找关键字
+  grep -C 10 'aaaa' nohup.out
+
+##文件名+内容  
+find 文件目录  -type f |xargs grep "查询内容"; 
+
+eg：
+grep -r "version.app.xinyartech.com"  /data/nginx/conf.d
+grep -r -l "version.app.xinyartech.com"  /data/nginx/conf.d
+find /data/nginx/conf.d  -type f |xargs grep "version.app.xinyartech.com"; 
+
+```
+
+```
+查看文件 # cat A.txt
+复制文件 # cp A.txt AA.txt
+更改文件权限 # sudo chmod 777 AA.txt
+更改群组 # chgrp 【groupname】 A.txt
+更改文件所有者 # chown 【username】 A.txt
+字符串搜索 # # grep 【keyword】 A.txt
+```
+```
+文件权限
+读4，写2，执行1
+文件所有者，群组用户，其他用户
+```
