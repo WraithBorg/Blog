@@ -24,5 +24,6 @@ String 是一个字符序列，内部数据结构其实是一个字符数组，�
 String 中频繁使用到了 System 类的 arraycopy 方法，目的是拷贝字符数组
 String 内部本质就是操作字符数组 value[]
 
-
+String长度不可变而StringBuffer和SringBuilder长度可变
+SringBuilder 线程不安全 和 StringBuffer线程安全
 # 序列化
