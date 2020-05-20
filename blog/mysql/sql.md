@@ -20,7 +20,7 @@ ORDER BY
 ```
 
 #### IN类型子查询优化
-``` 
+```
 -- CREATE TABLE t_1(t_1_id INT UNIQUE ,t_1_col_1 INT,t_1_col_2 VARCHAR(10));
 -- CREATE TABLE t_2(t_2_id INT UNIQUE ,t_2_col_1 INT,t_2_col_2 VARCHAR(10));
 -- INSERT INTO t_1 VALUES (1,11,'t_1_1');
@@ -45,7 +45,7 @@ FROM
 	t_1
 WHERE
 	t_1_id IN (SELECT t_2_id FROM t_2);
-	
+
 ```
 2. SQL2 与SQL1等效
 ```
@@ -59,17 +59,17 @@ WHERE
 ```
 
 3. SQL1和SQL2 查询计划一样,但是SQL2效率更高
-``` 
+```
 查询优化器对子查询进行了优化，通过子查询上拉技术，将子查询转化为连接条件实现hash半连接操作
 ```
 4.
-``` 
+```
 SELECT t_1.* FROM t_1 WHERE EXISTS (SELECT t_2_id FROM t_2 WHERE t_1_id = 1) AND t_1_id = 2;
 结果永远为null,因为 t_1_id = 1) AND t_1_id = 2
 ```
 
 #### IN 和 OR 选择
-```  
+```
 使用到IN查询时，都是按照如下方式处理的:
 [1] 对IN列表中的数值进行排序。
 [2] 对于查询的匹配，每次使用二分查找去匹配IN列表的数值。
@@ -101,4 +101,10 @@ select concat(cast(2.100 as decimal(18,4)),"美元");
 
 # 保留N位小数 ,但是末尾不要0，结果=2.1
 select concat(0+CAST(2.100 as char),"美元");
+
+# 保留两位小数，四舍五入去, 结果=1.00美元
+SELECT CONCAT(ROUND(1.00000,2),"美元");
+
+# 保留两位小数，四舍五入并去掉多余的0,结果是1美元
+select concat(0+CAST(ROUND(1.00000,2) as char),"美元");
 ```
