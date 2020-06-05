@@ -7,9 +7,12 @@ pwd; {显示当前工作目录}
 cd..; {切换上级目录}
 whereis mysql; ｛查找相关文件｝
 rm -rf 文件夹  {递归删除文件夹}
+rm -fr *  {清空当前文件夹内所有文件}
 clear {清除屏幕信息}
 alias mysqll='mysql -uroot -pThanos'   {设置别名}
 ip addr 显示网卡信息和ip地址
+ll = ls -l
+ cd - 命令可以回到上一个目录
 ```
 
 ### 安装vim
@@ -267,4 +270,11 @@ find /data/nginx/conf.d  -type f |xargs grep "version.app.xinyartech.com";
 文件权限
 读4，写2，执行1
 文件所有者，群组用户，其他用户
+```
+
+#### 查看linux查看硬件
+```
+cat /proc/cpuinfo | grep name | cut -f2 -d: |uniq -c
+cat /proc/meminfo | grep MemTotal
+df -hl 
 ```

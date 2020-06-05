@@ -1,4 +1,6 @@
 #### 信息结构
+`查看最近一次外键更新错误`
+
 ```
 mysql> show engine innodb status;
 BACKGROUND THREAD 后台进程

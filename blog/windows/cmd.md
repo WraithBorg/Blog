@@ -14,3 +14,11 @@ pause
 
 ### Tips
 进入超级管理员终端 win+x a
+
+### 打开图形文件夹
+```
+1、打开当前目录 explorer .
+2、打开上级目录 explorer ..
+3、打开任意目录 explorer dirname
+```
+
