@@ -40,6 +40,7 @@ sudo firewall-cmd --list-all
 ```
 
 ### BASIC
+
 ```
 切换为超级用户
 su -
@@ -278,3 +279,16 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: |uniq -c
 cat /proc/meminfo | grep MemTotal
 df -hl 
 ```
+
+#### 复制文件快捷键
+[root@test conf]# cp /usr/local/soft/tomcat85/conf/server.xml{,.bak}
+
+#### 复制完文件后，查看文件目录
+[root@test /]# cp /usr/local/soft/tomcat85/conf/server.xml{,.bak}
+[root@test /]# ls !$:h
+等同于 ls /usr/local/soft/tomcat85/conf
+
+#### 查看历史命令行,并执行第N条命令
+[root@test bin]# history
+[root@test bin]# !1075
+

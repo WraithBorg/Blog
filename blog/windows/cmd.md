@@ -5,6 +5,7 @@ netstat -aon | findstr "62607"
 tasklist|findstr "4840"
 
 ### 文件移动
+C:\Users\Administrator\Desktop\vpn>move client.zip \\192.168.13.147\rootdir
 // 清空文件夹 del c:\test\aaaa\*
 
 ### 关闭共享
@@ -22,3 +23,19 @@ pause
 3、打开任意目录 explorer dirname
 ```
 
+### 打包程序
+```
+cd c:\zxu_gitspace\cld
+call mvn install
+call cd c:\zxu_gitspace\cld\target
+call rename cld-0.0.1-SNAPSHOT.war cld.war
+call explorer .
+```
+
+### 删除共享文件夹缓存账号密码
+查看缓存的ip和密码
+C:\Users\Administrator>net use
+删除特定的缓存账号
+net use \\192.168.10.100 /delete
+删除所有的缓存账号
+C:\Users\Administrator>net use * /delete
