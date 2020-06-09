@@ -17,3 +17,9 @@ cd /usr/tomcat/tomcat8/bin && sh shutdown.sh
 #### 查看tomcat实时日志
 [root@test /]# cd /usr/local/soft/tomcat85/logs
 [root@test logs]# tail -f catalina.out
+[root@test logs]# tail /usr/local/soft/tomcat85/logs/catalina.out
+
+
+export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=192.168.13.147"
+
+sh catalina.sh run &

@@ -7,7 +7,7 @@ pwd; {显示当前工作目录}
 cd..; {切换上级目录}
 whereis mysql; ｛查找相关文件｝
 rm -rf 文件夹  {递归删除文件夹}
-rm -fr *  {清空当前文件夹内所有文件}
+rm -rf *  {清空当前文件夹内所有文件}
 clear {清除屏幕信息}
 alias mysqll='mysql -uroot -pThanos'   {设置别名}
 ip addr 显示网卡信息和ip地址
@@ -21,23 +21,7 @@ rpm -qa|grep vim  ｛查询是否安装｝
 yum -y install vim-enhanced ｛安装缺少的包｝
 ```
 
-### 开放端口
-```
-//  关闭与开启防火墙
-systemctl stop firewalld.service
-systemctl start firewalld.service
-//  查看防火墙是否开启的状态，以及开放端口的情况
-systemctl status firewalld.service
-sudo firewall-cmd --list-all
-//  接下来通过以下命令开放http 80 端口：
-sudo firewall-cmd --add-service=http --permanent
-sudo firewall-cmd --add-port=80/tcp --permanent
-//  命令末尾的--permanent表示用久有效，不加这句的话重启后刚才开放的端口就又失效了。
-//  然后重启防火墙：
-sudo firewall-cmd --reload
-//  再次查看端口的开放情况：
-sudo firewall-cmd --list-all
-```
+
 
 ### BASIC
 
@@ -292,3 +276,8 @@ df -hl
 [root@test bin]# history
 [root@test bin]# !1075
 
+#### 设置jdk环境变量
+export JAVA_HOME=/usr/local/soft/jdk8
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+source /etc/profile
