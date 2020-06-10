@@ -4,3 +4,4 @@
 [root@test yun]# getenforce
 查看SELinux状态
 [root@test yun]# /usr/sbin/sestatus -v
+

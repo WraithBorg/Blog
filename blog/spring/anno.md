@@ -1,0 +1,3 @@
+@Autowired 是按类型装配依赖对象，默认情况下它要求依赖对象必须存在，如果允许null值，可以设置它required属性为false
+@Resource 默认按名称装配，如果没有指定name属性，当注解标注在字段上，即默认取字段的名称作为bean名称寻找依赖对象，按照默认的名称仍然找不到依赖的对象时候，会回退到按照类型装配
+@Qualifier 可以决定注入哪个bean的,结合@Autowired使用，等同于@Resource

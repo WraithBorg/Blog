@@ -277,6 +277,7 @@ df -hl
 [root@test bin]# !1075
 
 #### 设置jdk环境变量
+vim /etc/profile
 export JAVA_HOME=/usr/local/soft/jdk8
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
