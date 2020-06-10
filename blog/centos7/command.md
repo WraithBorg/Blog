@@ -282,3 +282,8 @@ export JAVA_HOME=/usr/local/soft/jdk8
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 source /etc/profile
+
+#### 查看文件夹大小
+[root@test tomcat85]# du -h --max-depth=1 webapps
+[root@test webapps]# ls -lht
+[root@test webapps]# du -sh *
