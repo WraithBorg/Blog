@@ -31,7 +31,7 @@ ENV CATALINA_HOME /usr/local/soft/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin
 EXPOSE 8084
 CMD ["/usr/local/soft/tomcat/bin/catalina.sh","run"]
-
+doc
 [root@test soft]# docker build -t repostory/centos_tomcat .
 [root@test soft]# docker run -v /usr/local/dockerdir/yun:/usr/local/soft/tomcat/webapps -d -p 8084:8080 --name Icentos repostory/centos_tomcat
 [root@test soft]# docker ps

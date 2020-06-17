@@ -120,3 +120,10 @@ CMD node demos/01.js
 
 ## docker-compose 管理多个 Docker 容器组成一个应用
 docker cp cldpoint.war cf552:/usr/local/tomcat/webapps
+
+####  ADD 和 COPY
+两者类似，不过ADD命令会自动解压，COPY不会
+
+#### 如果容器启动失败没有日志
+只需要在末尾加上 CMD tail -f /dev/null
+待容器启动后 进入容器在启动相关服务

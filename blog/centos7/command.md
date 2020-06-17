@@ -50,6 +50,11 @@ chomd644 xxx.ibd
 777 rwxrwxrwx
 ```
 
+#### 查看文件权限
+```
+ls -l catalina-jrebel.sh 
+```
+
 ### chown命令
 ```
 [root@localhost ~]# chown -R  mysql:mysql ./

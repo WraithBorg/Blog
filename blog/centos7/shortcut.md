@@ -8,7 +8,7 @@ mv b/B.txt a/aa/aaa
 
 ###  如果上一条命令执行顺序有问题，则通过”!:n“修复
 ```
-[root@test download]# tar -cvf ggiitt git-2.26.2.tar.gz 
+[root@test download]# tar -cvf ggiitt git-2.26.2.tar.gz
 git-2.26.2.tar.gz
 [root@test download]# !:0 !:1 !:3 !:2
 tar -cvf git-2.26.2.tar.gz ggiitt
@@ -91,3 +91,8 @@ echo mv a/aa/aaa/gg.tar a/aa/aaa/gg.tar.bak
 [root@test logs]# !362:gs/cat /cd /
 
 ```
+
+### 快捷键
+清空当前输入 ctrl u
+放弃当前输入 ctrl z
+清空屏幕 ctrl z
