@@ -59,7 +59,7 @@
 [root@test yun]# sudo systemctl enable smb.service
 
 #### 访问共享文件夹
-Win + R , 在运行界面输入 \192.168.13.147
+Win + R , 在运行界面输入 \\192.168.13.147
 
 #### 启动停止查看运行状态
 systemctl start smb
