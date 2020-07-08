@@ -177,6 +177,7 @@ CentOS Linux release 7.8.2003 (Core)
 #### 安装图形界面
 ```
 yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
+yum groupremove "GNOME Desktop" "Graphical Administration Tools"
 ```
 #### 设置图形界面
 ```
