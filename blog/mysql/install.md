@@ -45,3 +45,18 @@ systemctl start mysqld.service
   ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
 ```
 
+### 安装两个mysql && 安装mysql解压版
+1: 去掉path中上一个mysql的环境变量PATH
+2: 停掉上一个mysql服务
+3：修改解压版mysql default-my.int的port，不能为3306
+4: CMD(管理员模式)进入bin目录 执行 $: mysqld install MYSQL56
+5: bin目录 执行 $:mysqld –hlocalhost –uroot –p​
+6:设置mysql密码
+```
+mysql免安装版如何设置root密码
+mysqladmin -u root password "newpass"
+如果root已经设置过密码，采用如下方法
+mysqladmin -u root password oldpass "newpass"
+```
+7: mysql启动命命 $: mysqld --console
+8: mysql关闭命令 $: mysqladmin -u root shutdown
