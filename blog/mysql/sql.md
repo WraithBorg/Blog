@@ -108,3 +108,12 @@ SELECT CONCAT(ROUND(1.00000,2),"美元");
 # 保留两位小数，四舍五入并去掉多余的0,结果是1美元
 select concat(0+CAST(ROUND(1.00000,2) as char),"美元");
 ```
+
+#### 查询只包含一个汉字的数据
+``` sql
+SELECT val,length(val),char_length(val) FROM applock WHERE length(val)!=char_length(val) AND ((length(val)+1-3)=char_length(val));
+# val 是 applock表的一列
+# length函数:   是计算字段的长度一个汉字是算三个字符,一个数字或字母算一个字符
+  char_length:不管汉字还是数字或者是字母都算是一个字符
+  所以 length+1-3 = char_length的话,说明这列有且只有一个汉字
+```
