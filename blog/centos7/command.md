@@ -165,8 +165,13 @@ mkdir -p xxx
 su - root -s /bin/bash
 
 #### 查看内核
+```
 [root@test ~]# uname -sr
 Linux 5.6.12-1.el7.elrepo.x86_64
+或者
+$ cat /etc/redhat-release 
+CentOS Linux release 7.6.1810 (Core) 
+```
 
 #### CentOS 查看版本哈
 [root@test sinatra]# rpm -q centos-release
@@ -293,3 +298,10 @@ source /etc/profile
 [root@test tomcat85]# du -h --max-depth=1 webapps
 [root@test webapps]# ls -lht
 [root@test webapps]# du -sh *
+
+
+#### 查找文件，查找文件夹
+```
+[root@]# find / -name 'nginx' -print
+[root@]# find / -name 'nginx' -type d
+```

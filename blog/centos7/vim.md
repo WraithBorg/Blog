@@ -68,7 +68,7 @@ U        # 取消所有操作:
 
 ### 6. 其他命令
 :!command        # 运行shell命令，command代表命令
-:set number        # 在文件中的每一行前面列出行号
+:set number        # 在文件中的每一行前面列出行号，序号
 :set nonumber        # 取消在文件中的每一行前面列出行号
 Ctrl +g       # 列出光标所在行行号
 :set readonly        # 设置文件为只读模式

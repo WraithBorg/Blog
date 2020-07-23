@@ -32,7 +32,7 @@ tar xf nginx-1.10.3.tar.gz && cd nginx-1.10.3
 ```
 ```nginx
 ./configure \
---prefix=/usr/local/nginx-1.10.3 \
+--prefix=/root/soft/nginx1103 \
 --with-http_ssl_module \
 --with-http_stub_status_module \
 --add-module=/usr/local/src/ngx_devel_kit-0.3.0 \
