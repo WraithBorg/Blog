@@ -29,3 +29,5 @@ System.out.println(new BigDecimal(0.01));
 
 ```
 
+#### 删除多余空行
+^[\s]*\n

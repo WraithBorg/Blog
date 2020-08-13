@@ -28,11 +28,11 @@ cd /usr/local/src
 wget http://nginx.org/download/nginx-1.10.3.tar.gz
 export LUAJIT_LIB=/usr/local/luajit/lib
 export LUAJIT_INC=/usr/local/luajit/include/luajit-2.0
-tar xf nginx-1.10.3.tar.gz && cd nginx-1.10.3
+tar xf nginx-1.18.0.tar.gz && cd nginx-1.10.3
 ```
 ```nginx
 ./configure \
---prefix=/root/soft/nginx1103 \
+--prefix=/usr/local/soft/nginx1180 \
 --with-http_ssl_module \
 --with-http_stub_status_module \
 --add-module=/usr/local/src/ngx_devel_kit-0.3.0 \
