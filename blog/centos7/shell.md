@@ -10,7 +10,7 @@ sh ,bash 和 ./ 可以执行shell脚本
 
 ### source
 重新执行刚修改的文档，通常用 “.” 来代替
-source filename 
+source filename
 . filename
 source /etc/profile 使新设置的环境变量生效
 
@@ -91,4 +91,100 @@ start...
 end...
 
 可以通过$!获取上一条命令的返回结果
+```
+
+## 常用技巧
+
+#### 脚本失败立即退出
+```
+1:
+vim test.sh
+cat test.sh
+    echo 'hello'
+sh test.sh
+// 输出hello
+2:
+vim test.sh
+cat test.sh
+    lp
+    echo 'hello'
+sh test.sh
+// 输出 test.sh: line 1: lp: command not found
+      //hello
+// 即失败之后仍继续运行
+3:
+vim test.sh
+cat test.sh
+    set -e
+    lp
+    echo 'hello'
+sh test.sh
+//输出 testsh.sh: line 2: lp: command not found
+//即失败之后便停止运行
+4:
+如果希望失败后仍要继续运行,可做如下改变
+set -e
+lp || true
+echo 'hello'
+5:
+如果希望某些条件失败后继续执行，某些条件失败后停止执行，则如下
+cat test.sh
+    set +e
+    lp
+    set -e
+    echo 'hello'
+    llpp
+    echo 'hello llpp'
+
+```
+
+#### 脚本调试
+```
+sh -x testsh.sh
+    + set +e
+    + lp
+    testsh.sh: line 2: lp: command not found
+    + set -e
+    + echo hello
+    hello
+    + llpp
+    testsh.sh: line 5: llpp: command not found
+// 前面带+的内容就是命令实际执行的
+```
+#### 显示未定义变量
+`脚本开头添加 set -u`
+#### 管道命令一个失败时整个失败
+`cat test.sh |grep if | cut -d ';' -f 2` 三条命令一行执行，如果第一条失败了，后续命令依旧执行
+如果希望第一条命令失败了就停止执行，则在脚本中添加 set -o pipefail
+#### 静态变量设置readonly
+```
+#!/bin/bash
+readonly MY_PATH=/usr/bin
+```
+#### 设置变量默认值
+```
+[root@VM-0-16-centos games]# cat testsh.sh
+#!/bin/bash
+name=${1:-shouqian}
+echo "$name"
+
+[root@VM-0-16-centos games]# sh testsh.sh haha
+haha
+[root@VM-0-16-centos games]# sh testsh.sh
+shouqian
+```
+#### 多条命令执行
+假如cmd0失败,如果不希望后面的命令执行,则使用 cmd0 && cmd1 && cmd1
+假如cmd0失败,如果希望后面的命令执行,则使用 cmd0;cmd1;cmd1
+```
+[root@VM-0-16-centos games]# echo '11';echo1 '22';echo '44';
+11
+-bash: echo1: command not found
+44
+```
+```
+[root@VM-0-16-centos games]# echo '11'&&echo1 '22'&&echo '44';
+11
+-bash: echo1: command not found
+
 ```
