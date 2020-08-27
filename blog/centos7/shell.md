@@ -188,3 +188,15 @@ shouqian
 -bash: echo1: command not found
 
 ```
+
+#### 查看tomcat日志
+```
+#!/bin/bash
+if [ $1 == 'all' ]
+then
+	vim -M -m "/usr/local/tomcat/logs/catalina."`date +%Y-%m-%d`".log"
+else
+	tail -f "/usr/local/tomcat/logs/catalina."`date +%Y-%m-%d`".log"
+fi
+```
+
