@@ -5,3 +5,6 @@ mvn -clean package
 @echo off
 sudo java -jar demo.jar
 @pause
+
+#### 后台运行微服务
+nohup java -jar xxxx.jar & 
