@@ -103,7 +103,7 @@ mysql> flush tables oldDB.employees for export;  -- 在/var/lib/mysql/oldDB/ 目
 [root@vultr employees]# cp employees.{cfg,ibd} ../newDB/   （本机的话，另开窗口，防止丢失cfg文件）
 远程主机为：scp employees.{cfg,ibd} 新主机地址:/var/lib/mysql/newDB
 
-源库上，使用UNLOCAL TABLES释放FLUSH TABLES ... FOR EXPORT命令获取的锁
+源库上，使用 UNLOCAL TABLES 释放 FLUSH TABLES ... FOR EXPORT 命令获取的锁
 mysql> UNLOCK TABLES;
 
 目标库上，导入从源库上复制过来的表空间：
@@ -144,8 +144,3 @@ https://dev.mysql.com/doc/refman/5.7/en/backup-methods.html
 show global variables;
 
 
-乐观锁是一种思想，它其实并不是一种真正的『锁』，它会先尝试对资源进行修改，在写回时判断资源是否进行了改变，如果没有发生改变就会写回，否则就会进行重试，在整个的执行过程中其实都没有对数据库进行加锁；
-悲观锁就是一种真正的锁了，它会在获取资源前对资源进行加锁，确保同一时刻只有有限的线程能够访问该资源，其他想要尝试获取资源的操作都会进入等待状态，直到该线程完成了对资源的操作并且释放了锁后，其他线程才能重新操作资源；
-
-
-乐观锁不会存在死锁的问题，但是由于更新后验证，所以当冲突频率和重试成本较高时更推荐使用悲观锁，而需要非常高的响应速度并且并发量非常大的时候使用乐观锁就能较好的解决问题，在这时使用悲观锁就可能出现严重的性能问题；在选择并发控制机制时，需要综合考虑上面的四个方面（冲突频率、重试成本、响应速度和并发量）进行选择。
