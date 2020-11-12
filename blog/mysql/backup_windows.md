@@ -1,4 +1,4 @@
-# 利用表分区转储的方式备份还原数据
+# 利用表分区和表空间传输的方式进行数据转储
 > storebill4part表中有约191w条数据,希望将一月份的数据（约70w条）移到历史表或者进行备份
 
 ### 将分区表的数据转移到历史表，缩减当前表体积
@@ -11,6 +11,9 @@ ALTER  TABLE storebill4bak REMOVE PARTITIONING;
 ALTER  TABLE storebill4part EXCHANGE PARTITION p202001 WITH TABLE storebill4test;
 SELECT COUNT(*) FROM storebill4test; -- 71w条数据
 SELECT COUNT(*) FROM storebill4part; -- 120w条数据
+
+-- 如果将历史表的数据还原到当前表，只需要再次执行
+ALTER  TABLE storebill4part EXCHANGE PARTITION p202001 WITH TABLE storebill4test; -- 耗时9s
 ```
 ### 将历史表的数据进行表空间备份，数据备份目录 C:\databasebak
 ```
