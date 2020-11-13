@@ -33,7 +33,7 @@ cookie使用的版本号,0表示遵循Netscape的Cookie规范，1表示遵循W3C
 从客户端读取cookie时,包括maxAge在内的其他属性时不可读的,也不会被提交  
 浏览器提交cookie时,只会提交name和value属性  
 #### cookie域名
-yibacookie是不可跨域名的,  
+cookie是不可跨域名的,  
 #### cookie的安全性
 使用HTTP协议的数据不经过任何加密就直接在网络上传播，有被截获的可能。使用HTTP协议传输很机密的内容是一种隐患  
 如果不希望Cookie在HTTP等非安全协议中传输，可以设置Cookie的secure属性为true  

@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 public class CopyDatabase {
-    private static final  Logger log = LoggerFactory.getLogger(DemoApplication.class);
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @Value("${oldDB}")
@@ -76,7 +75,6 @@ public class CopyDatabase {
             is.close();
             reader.close();
             process.destroy();
-
             process.waitFor();
             System.out.println("移动表空间结束" + System.currentTimeMillis());
             jdbcTemplate.execute("unlock tables");
@@ -90,7 +88,6 @@ public class CopyDatabase {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
         return "Welcome";
     }
 }
