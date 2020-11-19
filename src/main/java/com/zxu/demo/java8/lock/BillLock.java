@@ -12,7 +12,7 @@ public class BillLock  implements AutoCloseable {
     public static AtomicInteger integer = new AtomicInteger(0);
     public static ConcurrentHashMap<String,String> concurrentHashMap = new ConcurrentHashMap();
 
-    private static final Logger logger = LoggerFactory.getLogger(BillLock.class);
+    
     private List<String> lockedBillIds = new ArrayList<>();
     public BillLock() {
     }

@@ -140,7 +140,20 @@ insert into newDB.user select * from oldDB.user;
 #### 官方文档
 https://dev.mysql.com/doc/refman/5.7/en/backup-methods.html
 
-# mysql 全局变量
+#### mysql 全局变量
 show global variables;
 
 
+## Mysql备份策略：
++ **完整备份**： 就是指对某一个时间点上的所有数据或应用进行的一个完整拷贝，对数据量大的，备份时间较长，当然数据在恢复的时候快。
++ **增量备份**： 备份自上一次备份（包括完整备份，差异备份，增量备份）之后所有变化的数据进行备份。恢复的时候只需要一次完整的备份加上完整备份后的多个增量备份进行恢复即可。
++ **差异备份**： 备份自上一次完整备份之后所有变化的数据，恢复的时候仅需要最新一次完整备份加上差异备份即可。
+		
+## 备份方式：
++ 1、使用mysqldump进行逻辑备份
++ 2、使用LVM快照备份：
+    快照备份就是把当时的场景保存为一个不变的状态，然后对这个不变的状态进行备份。但然，在规划mysql数据库时最好将数据和日志分开放到lvm分区中。使用LVM快照备份，需要将数据放在lvm分区。
++ 3、Xtrabackup备份：
+     XtraBackup基于InnoDB的crash-recovery功能。它会复制innodb 的data file，由于不锁表，复制出来的数据是不一致的，
+     在恢复的时候使用crash-recovery，使得数据恢复一致。InnoDB维护了一个redo log，又称为transaction log，事务日志，它包含了innodb数据的所有改动情况。
+     
