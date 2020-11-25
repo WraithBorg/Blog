@@ -8,7 +8,7 @@ tasklist|findstr "4840"
 C:\Users\Administrator\Desktop\vpn>move client.zip \\192.168.13.147\rootdir
 // 清空文件夹 del c:\test\aaaa\*
 
-### 关闭共享
+### 关闭共享 
 net use
 net use * /del 或 net use \\192.168.13.152\outsale-middleware /del /y
 pause
