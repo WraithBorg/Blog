@@ -127,3 +127,8 @@ docker cp cldpoint.war cf552:/usr/local/tomcat/webapps
 #### 如果容器启动失败没有日志
 只需要在末尾加上 CMD tail -f /dev/null
 待容器启动后 进入容器在启动相关服务
+
+#### 查看容器已挂在目录
+```
+docker inspect 3984 | grep Mounts -A 20
+```
